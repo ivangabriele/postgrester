@@ -1,0 +1,29 @@
+{
+  "name": "@socialgouv/postgrest",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "description": "PostgREST-based API Client.",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 10.16.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "api",
+    "client",
+    "postgres",
+    "postgresql",
+    "postgrest"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SocialGouv/postgrest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SocialGouv/postgrest/issues"
+  },
+  "homepage": "https://github.com/SocialGouv/postgrest#readme"
+}
