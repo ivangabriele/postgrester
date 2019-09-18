@@ -1,0 +1,10 @@
+{
+  "extends": ["tslint-config-airbnb", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": ["./src/**/*.test.ts"]
+  },
+  "rules": {
+    "no-console": [true, "log"],
+    "variable-name": [true, "allow-pascal-case", "ban-keywords", "check-format"]
+  }
+}
