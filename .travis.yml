@@ -1,0 +1,19 @@
+language: node_js
+node_js: "12"
+
+cache:
+  yarn: true
+
+stages:
+  - Test
+
+jobs:
+  include:
+    - stage: Test
+      name: Unit Tests
+      script: ./scripts/ci/run_unit_tests.sh
+
+notifications:
+  email:
+    on_failure: change
+    on_success: never
