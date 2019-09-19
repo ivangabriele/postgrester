@@ -3,14 +3,42 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "description": "PostgREST-based API Client.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "engines": {
     "node": ">= 10.16.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "ci:generate:release_notes": "node ./scripts/ci/generate_release_notes.js",
+    "test": "yarn test:lint && yarn test:unit",
+    "test:lint": "tslint -p ./tsconfig.json",
+    "test:unit": "jest --coverage",
+    "test:watch": "yarn test:unit --watch",
+    "preversion": "yarn test",
+    "postversion": "git push origin HEAD && git push --tags"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jest": "24.0.18",
+    "axios": "0.19.0",
+    "coveralls": "3.0.6",
+    "jest": "24.9.0",
+    "keep-a-changelog": "0.8.1",
+    "prettier": "1.18.2",
+    "rollup": "1.21.4",
+    "rollup-plugin-cleaner": "1.0.0",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-json": "4.0.0",
+    "rollup-plugin-node-builtins": "2.1.2",
+    "rollup-plugin-node-globals": "1.4.0",
+    "rollup-plugin-node-resolve": "5.2.0",
+    "rollup-plugin-typescript2": "0.24.2",
+    "ts-jest": "24.1.0",
+    "tslint": "5.20.0",
+    "tslint-config-airbnb": "5.11.1",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.6.3"
+  },
   "keywords": [
     "api",
     "client",
