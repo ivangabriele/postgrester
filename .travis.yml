@@ -6,12 +6,46 @@ cache:
 
 stages:
   - Test
+  - name: Release
+    if: repo = "SocialGouv/postgrest" AND tag IS present
 
 jobs:
   include:
     - stage: Test
       name: Unit Tests
       script: ./scripts/ci/run_unit_tests.sh
+
+    - stage: Release
+      name: Github Release
+      script: skip
+      before_deploy:
+        - yarn ci:generate:release_notes
+      deploy:
+        provider: releases
+        api_key:
+          secure: jH5miOQSTjeLvaw52Pm8+hh7YuXvtH0x/bxdK2wbFPcd2zAkmuAos9yhOqbe63myssljVk2k7+8iOKQocSSN7Ynd8i9ccfZ+VrLSdnrC1Xc9yYA9/sJofQrEHXLZQsPN84ITj6VzBTLeJoe67N2Kg79G9urbSZfhc7IYfcPlyxXIjHXApo4G727jdGD14g5Q7crntoULiAQEmIXk2/I1dZWboi2pXXDiE6EXk/sndcVj9Rx2vO3q3Z7rFpIYn/XwczyyEhLGvodKSEIPLUOmaJ9ApqHY+zNdD9sjcmv29OctrNQ1vCcIowR1ATaObKinV900Kbh3lCWlK+C7ehabL2reVnGHzOaZ6njSlWwHdTycZqE9QsxQ31YqT6UUFYbQY7Ztso9q4pItZ2vTpMZfeHoInbBdO/Yy4beciMZnUaXxn4hJl9kKc6cBxUMJLarSfkJO0TxnLGzoX2QhAK2q4tqAHXLfTQBOcdGdcYTCLcVyQAjqJLizThpgFeEVTs88UYq0xn3FePW8WiEuu43OqH8Lm5Yy4m9d8S/GGxLprDebUW+TWOWxLfugBLMurbYcMmlB+87zUV+RxFc3Zt3sZbG5+/rnY1uNrkFlNi66HevMWwGBBixRjF1587wFpdDGv8s6Hfs1rginXKhlkWr6Oxqzxma2y3G2vvV4r+/btII=
+        edge:
+          branch: master
+        release_notes_file: ./RELEASE_NOTES.md
+        on:
+          repo: SocialGouv/postgrest
+          tags: true
+
+    - stage: Release
+      name: NPM Package
+      script: skip
+      before_deploy:
+        - yarn build
+      deploy:
+        provider: npm
+        access: public
+        api_token: $NPM_TOKEN
+        edge:
+          branch: master
+        email: 45039513+SocialGroovyBot@users.noreply.github.com
+        on:
+          repo: SocialGouv/postgrest
+          tags: true
 
 notifications:
   email:
