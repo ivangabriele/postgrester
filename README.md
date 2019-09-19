@@ -1,18 +1,16 @@
 # Postgrest Client
 
 [![License][img-license]][link-license]
-[![Latest Version][img-version]][link-version]
+[![NPM Version][img-npm]][link-npm]
 [![Build Status][img-travis]][link-travis]
 [![Code Coverage][img-coveralls]][link-coveralls]
 
-PostgREST-based API Client in JS.
+[PostgREST][link-postgrest]-based API Client in JS.
 
 ## Install
 
-**TODO: Publish on npm.**
-
 ```bash
-npm i https://github.com/SocialGouv/postgrest
+npm i @socialgouv/postgrest
 ```
 
 ## Example
@@ -59,10 +57,10 @@ yarn test:watch
 
 [img-coveralls]: https://img.shields.io/coveralls/github/SocialGouv/postgrest/master?style=flat-square
 [img-license]: https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square
+[img-npm]: https://img.shields.io/npm/v/@socialgouv/postgrest?style=flat-square
 [img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrest/master?style=flat-square
-[img-version]: https://img.shields.io/github/package-json/v/SocialGouv/postgrest?style=flat-square
 [link-coveralls]: https://coveralls.io/github/SocialGouv/postgrest
 [link-license]: https://github.com/SocialGouv/postgrest/blob/master/LICENSE
-[link-mattermost]: https://mattermost.com
+[link-npm]: https://github.com/SocialGouv/postgrest/blob/master/LICENSE
+[link-postgrest]: http://postgrest.org
 [link-travis]: https://travis-ci.com/SocialGouv/postgrest
-[link-version]: https://github.com/SocialGouv/postgrest/releases
