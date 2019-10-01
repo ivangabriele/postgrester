@@ -60,7 +60,7 @@ yarn
 npm version [major|minor|patch|preversion]
 ```
 
-This will automatically build, tag and publish into Github.
+This will automatically tag, push, build and publish to Github & NPM.
 
 ### VSCode Settings
 
