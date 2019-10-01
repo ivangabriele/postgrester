@@ -72,14 +72,18 @@ This will automatically build, tag and publish into Github.
 }
 ```
 
+## License
+
+This package and its sources are distributed under [Apache 2.0][link-license].
+
 ---
 
 [img-coveralls]: https://img.shields.io/coveralls/github/SocialGouv/postgrester/master?style=flat-square
 [img-license]: https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square
-[img-npm]: https://img.shields.io/npm/v/@socialgouv/postgrester?style=flat-square
+[img-npm]: https://img.shields.io/npm/v/postgrester?style=flat-square
 [img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrester/master?style=flat-square
 [link-coveralls]: https://coveralls.io/github/SocialGouv/postgrester
 [link-license]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
-[link-npm]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
+[link-npm]: https://www.npmjs.com/package/postgrester
 [link-postgrest]: http://postgrest.org
 [link-travis]: https://travis-ci.com/SocialGouv/postgrester
