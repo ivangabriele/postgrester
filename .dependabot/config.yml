@@ -8,7 +8,7 @@ update_configs:
           dependency_type: "all"
           update_type: "semver:minor"
     commit_message:
-      prefix: "yarn"
+      prefix: "chore(deps)"
       include_scope: false
     update_schedule: "live"
     version_requirement_updates: "increase_versions"

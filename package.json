@@ -1,19 +1,19 @@
 {
-  "name": "@socialgouv/postgrest",
+  "name": "postgrester",
   "version": "0.0.0",
   "license": "Apache-2.0",
-  "description": "PostgREST-based API Client.",
+  "description": "PostgREST API Client.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "engines": {
     "node": ">= 10.16.0"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c && copyfiles -f ./src/index.d.ts ./dist",
     "ci:generate:release_notes": "node ./scripts/ci/generate_release_notes.js",
     "test": "yarn test:lint && yarn test:unit",
     "test:lint": "tslint -p ./tsconfig.json",
-    "test:unit": "jest --coverage",
+    "test:unit": "jest",
     "test:watch": "yarn test:unit --watch",
     "preversion": "yarn test",
     "postversion": "git push origin HEAD && git push --tags"
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/jest": "24.0.18",
     "axios": "0.19.0",
+    "copyfiles": "2.1.1",
     "coveralls": "3.0.6",
     "jest": "24.9.0",
     "keep-a-changelog": "0.8.1",
@@ -48,10 +49,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SocialGouv/postgrest.git"
+    "url": "git+https://github.com/SocialGouv/postgrester.git"
   },
   "bugs": {
-    "url": "https://github.com/SocialGouv/postgrest/issues"
+    "url": "https://github.com/SocialGouv/postgrester/issues"
   },
-  "homepage": "https://github.com/SocialGouv/postgrest#readme"
+  "homepage": "https://github.com/SocialGouv/postgrester#readme"
 }

@@ -1,29 +1,29 @@
-# Postgrest Client
+# postgrester
 
 [![License][img-license]][link-license]
 [![NPM Version][img-npm]][link-npm]
 [![Build Status][img-travis]][link-travis]
 [![Code Coverage][img-coveralls]][link-coveralls]
 
-[PostgREST][link-postgrest]-based API Client in JS.
+[PostgREST][link-postgrest] API Client.
 
 ## Install
 
 ```bash
-npm i @socialgouv/postgrest
+npm i postgrester
 ```
 
 ## Example
 
 ```js
-import Postgrest from "@socialgouv/postgrest";
+import postgrester from "postgrester";
 
-const postgrest = new Postgrest({
+const postgrestClient = postgrester.create({
   baseUri: "https://api.example.com"
 });
 
 (async () => {
-  const [data, pagesLength] = postgrest
+  const [data, pagesLength] = postgrester
     .select("*")
     .select("author(first_name,last_name)")
     .is("is_published", true)
@@ -49,18 +49,37 @@ yarn
 
 ### Test
 
+- All Tests: `yarn test`
+- Lint Tests: `yarn test:lint`
+- Unit Tests: `yarn test:unit`
+- Unit Tests (watch): `yarn test:watch`
+
+### Publish
+
 ```bash
-yarn test:watch
+npm version [major|minor|patch|preversion]
+```
+
+This will automatically build, tag and publish into Github.
+
+### VSCode Settings
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.rulers": [100],
+  "travis.pro": true
+}
 ```
 
 ---
 
-[img-coveralls]: https://img.shields.io/coveralls/github/SocialGouv/postgrest/master?style=flat-square
+[img-coveralls]: https://img.shields.io/coveralls/github/SocialGouv/postgrester/master?style=flat-square
 [img-license]: https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square
-[img-npm]: https://img.shields.io/npm/v/@socialgouv/postgrest?style=flat-square
-[img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrest/master?style=flat-square
-[link-coveralls]: https://coveralls.io/github/SocialGouv/postgrest
-[link-license]: https://github.com/SocialGouv/postgrest/blob/master/LICENSE
-[link-npm]: https://github.com/SocialGouv/postgrest/blob/master/LICENSE
+[img-npm]: https://img.shields.io/npm/v/@socialgouv/postgrester?style=flat-square
+[img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrester/master?style=flat-square
+[link-coveralls]: https://coveralls.io/github/SocialGouv/postgrester
+[link-license]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
+[link-npm]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
 [link-postgrest]: http://postgrest.org
-[link-travis]: https://travis-ci.com/SocialGouv/postgrest
+[link-travis]: https://travis-ci.com/SocialGouv/postgrester

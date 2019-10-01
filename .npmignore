@@ -1,10 +1,22 @@
+# https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package
+
 # ================================================
 # Custom
 
-/dist
+/.dependabot
+/.vscode
+/scripts
+/src
 
-/.vscode/settings.json
+/.editorconfig
+/.prettierrc
+/.travis.yml
+/index.html
+/jest.config.js
 /RELEASE_NOTES.md
+/rollup.config.js
+/tsconfig.json
+/tslint.json
 
 # ================================================
 # Node
