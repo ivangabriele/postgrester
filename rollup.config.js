@@ -21,7 +21,8 @@ export default {
     json(),
     // Locate dependencies via node.js resolution algorithm:
     nodeResolve({
-      preferBuiltins: true
+      browser: true,
+      preferBuiltins: false
     }),
     // Transpile Typescript to ES6:
     typescript({
