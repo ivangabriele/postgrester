@@ -182,10 +182,9 @@ Promise<{
 
 **Parameters**
 
-| Name            | Type      | Default      | Examples   |
-| --------------- | --------- | ------------ | ---------- |
-| path            | `string`  | **required** | `"/books"` |
-| withPagesLength | `boolean` | false        |            |
+| Name | Type     | Default      | Examples   |
+| ---- | -------- | ------------ | ---------- |
+| path | `string` | **required** | `"/books"` |
 
 **Return value**
 
@@ -197,10 +196,9 @@ Promise<void>
 
 **Parameters**
 
-| Name            | Type      | Default      | Examples   |
-| --------------- | --------- | ------------ | ---------- |
-| path            | `string`  | **required** | `"/books"` |
-| withPagesLength | `boolean` | false        |            |
+| Name | Type     | Default      | Examples   |
+| ---- | -------- | ------------ | ---------- |
+| path | `string` | **required** | `"/books"` |
 
 **Return value**
 
@@ -212,10 +210,9 @@ Promise<void>
 
 **Parameters**
 
-| Name            | Type      | Default      | Examples   |
-| --------------- | --------- | ------------ | ---------- |
-| path            | `string`  | **required** | `"/books"` |
-| withPagesLength | `boolean` | false        |            |
+| Name | Type     | Default      | Examples   |
+| ---- | -------- | ------------ | ---------- |
+| path | `string` | **required** | `"/books"` |
 
 **Return value**
 
