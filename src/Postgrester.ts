@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 
-import { PostgresterContructor, PostgresterInstance, PostgresterOptions } from "./types";
+import { PostgresterConfig, PostgresterConstructor, PostgresterInstance } from "./types";
 
-const Postgrester: PostgresterContructor = class Postgrester implements PostgresterInstance {
+const Postgrester: PostgresterConstructor = class Postgrester implements PostgresterInstance {
   private ands: string[];
   private readonly axios: AxiosInstance;
   private foreignSorters: { [k: string]: string[] };
@@ -34,10 +34,17 @@ const Postgrester: PostgresterContructor = class Postgrester implements Postgres
     return this;
   }
 
-  constructor({ baseUri }: PostgresterOptions) {
-    this.axios = axios.create({
-      baseURL: baseUri
-    });
+  constructor({ axiosConfig, axiosInstance, baseUri }: PostgresterConfig) {
+    if (axiosInstance !== null) {
+      this.axios = axiosInstance;
+    } else {
+      const baseAxiosConfig = axiosConfig !== null ? axiosConfig : {};
+
+      this.axios = axios.create({
+        ...baseAxiosConfig,
+        baseURL: baseUri
+      });
+    }
 
     this.reset();
   }

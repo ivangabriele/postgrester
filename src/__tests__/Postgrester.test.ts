@@ -3,9 +3,11 @@ jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 mockedAxios.create.mockReturnValue(mockedAxios);
 
+import { DEFAULT_CONFIG } from "../constants";
 import Postgrester from "../Postgrester";
 
 const postgrester = new Postgrester({
+  ...DEFAULT_CONFIG,
   baseUri: "https://contributions-api.codedutravail.num.social.gouv.fr"
 });
 

@@ -14,6 +14,8 @@ export default {
     }
   ],
 
+  external: ["axios"],
+
   plugins: [
     // Clean /dist directory:
     cleaner({ targets: ["./dist"] }),

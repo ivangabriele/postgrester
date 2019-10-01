@@ -1,9 +1,15 @@
+/// <reference types="axios" />
+
+import { AxiosInstance, AxiosRequestConfig } from "axios";
+
 export type PostgresterConfig = {
+  axiosConfig: AxiosRequestConfig | null;
+  axiosInstance: AxiosInstance | null;
   baseUri: string;
 };
 export type PostgresterOptions = Partial<PostgresterConfig>;
 
-export interface PostgresterContructor {
+export interface PostgresterConstructor {
   new (options: PostgresterOptions): PostgresterInstance;
 }
 

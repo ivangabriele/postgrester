@@ -1,3 +1,4 @@
+import { DEFAULT_CONFIG } from "./constants";
 // tslint:disable-next-line: import-name
 import PostgresterClass from "./Postgrester";
 import {
@@ -6,10 +7,6 @@ import {
   PostgresterOptions,
   PostgresterStatic
 } from "./types";
-
-const DEFAULT_CONFIG: PostgresterConfig = {
-  baseUri: ""
-};
 
 /**
  * Create an instance of Postgrester.
