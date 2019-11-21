@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/jest": "24.0.23",
     "copyfiles": "2.1.1",
-    "coveralls": "3.0.7",
+    "coveralls": "3.0.8",
     "jest": "24.9.0",
     "keep-a-changelog": "0.8.1",
     "prettier": "1.19.1",
