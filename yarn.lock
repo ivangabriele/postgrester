@@ -2586,10 +2586,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-keep-a-changelog@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/keep-a-changelog/-/keep-a-changelog-0.8.1.tgz#12922fca3e2549e796209ed278bfaf9f17550c7b"
-  integrity sha512-o3o8cV63VzsZrrnP0h6P2u5lo50BiJ+I5i8IrDdlH/txLGpb14RHGh0bkIE+vHcS+LYGKK2XR25fiIwB9CT4Yg==
+keep-a-changelog@0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/keep-a-changelog/-/keep-a-changelog-0.8.3.tgz#c06b582897f4df2f6cace83f4fd3425742db75b7"
+  integrity sha512-pzcUlfw2HLUrG6svkEJWjeVaiqBothcM4JPyamAochWnf9QSFjweYcoc4Q+QdTAwK3ysOBVcDmYvDWo7+nD8fg==
   dependencies:
     gitconfiglocal "^2.1.0"
     semver "^6.1.0"
