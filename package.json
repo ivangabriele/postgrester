@@ -28,7 +28,7 @@
     "jest": "24.9.0",
     "keep-a-changelog": "0.9.1",
     "prettier": "1.19.1",
-    "rollup": "1.28.0",
+    "rollup": "1.29.0",
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
