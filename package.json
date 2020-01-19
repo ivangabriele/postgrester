@@ -19,11 +19,11 @@
     "postversion": "git push --tags && git push origin HEAD"
   },
   "dependencies": {
-    "axios": "0.19.0"
+    "axios": "0.19.1"
   },
   "devDependencies": {
     "@types/jest": "24.9.0",
-    "copyfiles": "2.1.1",
+    "copyfiles": "2.2.0",
     "coveralls": "3.0.9",
     "jest": "24.9.0",
     "keep-a-changelog": "0.9.1",
@@ -40,7 +40,7 @@
     "tslint": "5.20.1",
     "tslint-config-airbnb": "5.11.2",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   },
   "resolutions": {
     "handlebars": ">=4.3.0",
