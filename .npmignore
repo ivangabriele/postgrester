@@ -3,7 +3,7 @@
 # ================================================
 # Custom
 
-/.dependabot
+/.github
 /.vscode
 /scripts
 /src
