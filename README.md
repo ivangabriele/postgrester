@@ -5,7 +5,7 @@
 [![Build Status][img-travis]][link-travis]
 [![Code Coverage][img-coveralls]][link-coveralls]
 
-[PostgREST][link-postgrest] API Client.
+JS/TS [PostgREST][link-postgrest] API Client.
 
 ## Install
 
@@ -43,7 +43,7 @@ const postgrestClient = postgrester.create({
 
 ### Options
 
-When creating the instance via `postgrester.create()`:
+When creating the instance via `postgrester.create([options])`:
 
 | Property        | Type                 | Default | Description                                |
 | --------------- | -------------------- | ------- | ------------------------------------------ |
@@ -54,8 +54,7 @@ When creating the instance via `postgrester.create()`:
 > **:warning: Important**<br>
 > If you specify the `axiosInstance` property, it's useless to set the `axiosConfig` one since it
 > will be overridden by your instance. And if you use the `axiosConfig` property with the `baseUri`
-> one, the provided `baseUri` will ooverride the axios `baseURL` if you set it whithin your
-> `axiosConfig`.
+> one, the provided `baseUri` will override the axios `baseURL` property.
 
 ### Query Methods
 
@@ -82,21 +81,21 @@ When creating the instance via `postgrester.create()`:
 
 **Parameters**
 
-| Name         | Type              | Default      | Examples                       |
-| ------------ | ----------------- | ------------ | ------------------------------ |
-| `column`     | `string`          | **required** | `"author"`, `"category.label"` |
-| `value`      | `number | string` | **required** | `"Leo Tolstoy"`                |
-| `withQuotes` | `boolean`         | `false`      |                                |
+| Name         | Type               | Default      | Examples                       |
+| ------------ | ------------------ | ------------ | ------------------------------ |
+| `column`     | `string`           | **required** | `"author"`, `"category.label"` |
+| `value`      | `number \| string` | **required** | `"Leo Tolstoy"`                |
+| `withQuotes` | `boolean`          | `false`      |                                |
 
 #### in()
 
 **Parameters**
 
-| Name         | Type                     | Default      | Examples                               |
-| ------------ | ------------------------ | ------------ | -------------------------------------- |
-| `column`     | `string`                 | **required** | `"author"`, `"category.label"`         |
-| `value`      | `Array<number | string>` | **required** | `["Leo Tolstoy", "Fyodor Dostoevsky"]` |
-| `withQuotes` | `boolean`                | `false`      |                                        |
+| Name         | Type                      | Default      | Examples                               |
+| ------------ | ------------------------- | ------------ | -------------------------------------- |
+| `column`     | `string`                  | **required** | `"author"`, `"category.label"`         |
+| `value`      | `Array<number \| string>` | **required** | `["Leo Tolstoy", "Fyodor Dostoevsky"]` |
+| `withQuotes` | `boolean`                 | `false`      |                                        |
 
 #### like()
 
@@ -118,21 +117,21 @@ When creating the instance via `postgrester.create()`:
 
 #### not
 
-This getter negates the next filter method.
+This getter **ONLY** negates the **FIRST** following filter method.
 
 For example, `postgrestClient.not.is("category_id", null).ilike("author", "dostoevsky")` will negate
 the `is()` filter but not the `ilike()` one.
 
 #### and
 
-This getter condition \*_all_ the next filter methods to be conjuncted as "ors".
+This getter condition **ALL** the following filter methods to be conjuncted as "ors".
 
 For example, `postgrestClient.not.is("category_id", null).ilike("author", "dostoevsky")` will negate
 the `is()` filter but not the `ilike()` one.
 
 #### or
 
-This getter condition \*_all_ the next filter methods to be conjuncted as "ands".
+This getter condition **ALL** the following filter methods to be conjuncted as "ands".
 
 ### Sort Methods
 
@@ -174,9 +173,14 @@ All calling methods are asynchronous promises.
 ```ts
 Promise<{
   data: any;
-  pagesLength: number; // -1 if the pages length was not requested or couldn't be calculated.
+  pagesLength: number;
 }>
 ```
+
+> **:warning: Important**<br> > `pagesLength` will equal `-1` if `<withPagesLength>` parameter is
+> `false` or if the pages length couldn't be calculated.
+
+`pagesLength`
 
 #### post()
 
@@ -243,7 +247,7 @@ npm version [major|minor|patch|preversion]
 
 This will automatically tag, push, build and publish to Github & NPM.
 
-### VSCode Settings
+### Recommended VSCode Settings
 
 ```json
 {
