@@ -19,12 +19,14 @@ jobs:
       name: Github Release
       script: skip
       before_deploy:
+        - yarn build:release
         - yarn ci:generate:release_notes
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
         edge:
           branch: master
+        file: ./postgrester-unsigned.zip
         release_notes_file: ./RELEASE_NOTES.md
         on:
           repo: SocialGouv/postgrester

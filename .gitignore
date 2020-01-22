@@ -6,6 +6,8 @@
 /.vscode/settings.json
 /RELEASE_NOTES.md
 
+*.zip
+
 # ================================================
 # Node
 

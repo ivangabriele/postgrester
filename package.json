@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "rollup -c && copyfiles -f ./src/index.d.ts ./dist",
+    "build:release": "yarn build && node ./scripts/ci/build_release.js",
     "ci:generate:release_notes": "node ./scripts/ci/generate_release_notes.js",
     "test": "yarn test:lint && yarn test:unit",
     "test:lint": "tslint -p ./tsconfig.json",
@@ -23,10 +24,12 @@
   },
   "devDependencies": {
     "@types/jest": "24.9.0",
+    "archiver": "3.1.1",
     "copyfiles": "2.2.0",
     "coveralls": "3.0.9",
     "jest": "24.9.0",
     "keep-a-changelog": "0.9.1",
+    "numeral": "2.0.6",
     "prettier": "1.19.1",
     "rollup": "1.29.0",
     "rollup-plugin-cleaner": "1.0.0",
