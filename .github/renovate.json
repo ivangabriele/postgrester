@@ -6,5 +6,8 @@
     "docker:disableMajor",
     "group:allNonMajor",
     "schedule:earlyMondays"
-  ]
+  ],
+  "node": {
+    "supportPolicy": ["lts_latest"]
+  }
 }

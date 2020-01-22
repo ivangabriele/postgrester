@@ -7,10 +7,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Fixed
-
-- Remove handlebars-related warnings in unit tests.
-
 ## [1.0.1] - 2020-01-22
 
 ### Fixed
