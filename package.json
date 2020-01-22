@@ -43,7 +43,8 @@
     "typescript": "3.7.5"
   },
   "resolutions": {
-    "handlebars": ">=4.3.0",
+    "bl": ">=0.9.5 <1.0.0 || >=1.0.1",
+    "handlebars": ">=4.5.3",
     "semver": ">=4.3.0"
   },
   "keywords": [
