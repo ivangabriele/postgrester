@@ -35,8 +35,6 @@
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
-    "rollup-plugin-node-builtins": "2.1.2",
-    "rollup-plugin-node-globals": "1.4.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-typescript2": "0.25.3",
     "ts-jest": "24.3.0",
@@ -47,8 +45,7 @@
   },
   "resolutions": {
     "bl": ">=0.9.5 <1.0.0 || >=1.0.1",
-    "handlebars": ">=4.7.1",
-    "semver": ">=4.3.0"
+    "handlebars": ">=4.7.1"
   },
   "keywords": [
     "api",
