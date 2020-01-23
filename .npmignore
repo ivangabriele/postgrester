@@ -11,7 +11,6 @@
 /.editorconfig
 /.prettierrc
 /.travis.yml
-/index.html
 /jest.config.js
 /RELEASE_NOTES.md
 /rollup.config.js
