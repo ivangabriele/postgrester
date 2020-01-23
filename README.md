@@ -23,7 +23,7 @@ const postgrestClient = postgrester.create({
 });
 
 (async () => {
-  const [data, pagesLength] = await postgrestClient
+  const { data, pagesLength } = await postgrestClient
     .select("*")
     .select("author(first_name,last_name)")
     .is("is_published", true)
