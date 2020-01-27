@@ -20,10 +20,10 @@
     "postversion": "git push --tags && git push origin HEAD"
   },
   "dependencies": {
-    "axios": "0.19.1"
+    "axios": "0.19.2"
   },
   "devDependencies": {
-    "@types/jest": "24.9.0",
+    "@types/jest": "24.9.1",
     "archiver": "3.1.1",
     "copyfiles": "2.2.0",
     "coveralls": "3.0.9",
@@ -31,7 +31,7 @@
     "keep-a-changelog": "0.9.1",
     "numeral": "2.0.6",
     "prettier": "1.19.1",
-    "rollup": "1.29.0",
+    "rollup": "1.30.0",
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
