@@ -19,7 +19,7 @@ npm i postgrester
 import postgrester from "postgrester";
 
 const postgrestClient = postgrester.create({
-  baseUri: "https://api.example.com"
+  axiosConfig: { baseURL: "https://api.example.com" }
 });
 
 (async () => {
@@ -49,12 +49,14 @@ When creating the instance via `postgrester.create([options])`:
 | --------------- | -------------------- | ------- | ------------------------------------------ |
 | `axiosConfig`   | `AxiosRequestConfig` | `{}`    | Axios config called with `axios.create()`. |
 | `axiosInstance` | `AxiosInstance`      | `null`  | Axios custom instance.                     |
-| `baseUri`       | `string`             | `""`    | API URL.                                   |
+| _`baseUri`_     | _`string`_           | _`""`_  | _API URL. <kbd>Deprecated</kbd>_           |
 
-> **:warning: Important**<br>
-> If you specify the `axiosInstance` property, it's useless to set the `axiosConfig` one since it
-> will be overridden by your instance. And if you use the `axiosConfig` property with the `baseUri`
-> one, the provided `baseUri` will override the axios `baseURL` property.
+> :warning: If you provide an axios instance via the `axiosInstance` property, it's useless to
+> set `axiosConfig` since it would be overridden by your instance.
+
+> :warning: `baseUri` takes precedence over `axiosConfig.baseURL`. To avoid any confusion,
+> `baseUri` will be **deprecated** in the next minor version release and should be removed in the
+> next major one.
 
 ### Query Methods
 
@@ -117,21 +119,24 @@ When creating the instance via `postgrester.create([options])`:
 
 #### not
 
-This getter **ONLY** negates the **FIRST** following filter method.
+This getter **ONLY** negates the **FIRST** following filtering method.
 
-For example, `postgrestClient.not.is("category_id", null).ilike("author", "dostoevsky")` will negate
-the `is()` filter but not the `ilike()` one.
+For example, `postgrestClient.not.is("category_id", null).ilike("author", "dostoevsky")` will
+**negate** the `is()` filter but not the `ilike()` one.
 
 #### and
 
-This getter condition **ALL** the following filter methods to be conjuncted as "ors".
+This getter condition **ALL** the following filtering methods to be conjuncted as "ands".
 
-For example, `postgrestClient.not.is("category_id", null).ilike("author", "dostoevsky")` will negate
-the `is()` filter but not the `ilike()` one.
+For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will 
+**intersect** both `is()` and `ilike()` filters.
 
 #### or
 
-This getter condition **ALL** the following filter methods to be conjuncted as "ands".
+This getter condition **ALL** the following filtering methods to be conjuncted as "ors".
+
+For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will 
+**unite** both `is()` and `ilike()` filters.
 
 ### Sort Methods
 
