@@ -48,6 +48,12 @@ jobs:
           repo: SocialGouv/postgrester
           tags: true
 
+# Limit branches builds to "master" & "develop" ones:
+branches:
+  only:
+    - develop
+    - master
+
 notifications:
   email:
     on_failure: change
