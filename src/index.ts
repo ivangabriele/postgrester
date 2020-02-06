@@ -1,4 +1,3 @@
-import { DEFAULT_CONFIG } from "./constants";
 // tslint:disable-next-line: import-name
 import PostgresterClass from "./Postgrester";
 import {
@@ -16,14 +15,14 @@ function createInstance(config: PostgresterConfig): PostgresterInstance {
 }
 
 // Create the default instance to be exported:
-const postgrester: PostgresterStatic = createInstance(DEFAULT_CONFIG) as any;
+const postgrester: PostgresterStatic = createInstance({}) as any;
 
 // Expose Postgrester class to allow class inheritance:
 (postgrester as any).Postgrester = PostgresterClass;
 
 // Factory for creating new instances:
 postgrester.create = function create(options: PostgresterOptions) {
-  return createInstance({ ...DEFAULT_CONFIG, ...options });
+  return createInstance(options);
 };
 
 export default postgrester;

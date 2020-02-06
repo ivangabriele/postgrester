@@ -3,28 +3,38 @@ jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 mockedAxios.create.mockReturnValue(mockedAxios);
 
-import { DEFAULT_CONFIG } from "../constants";
 import Postgrester from "../Postgrester";
+import T from "../texts";
 
-const postgrester = new Postgrester({
-  ...DEFAULT_CONFIG,
-  baseUri: "https://contributions-api.codedutravail.num.social.gouv.fr"
+const postgresterClient = new Postgrester({
+  axiosConfig: {
+    baseURL: "https://api.example.com"
+  }
 });
 
 describe("Postgrester", () => {
   beforeEach(() => {
-    (postgrester as any).reset();
+    (postgresterClient as any).reset();
+  });
+
+  test("should return the expected warning when using `baseUri` option", () => {
+    new Postgrester({
+      baseUri: "https://api.example.com"
+    });
+
+    expect(console.warn).toHaveBeenCalledTimes(1);
+    expect(console.warn).toHaveBeenCalledWith(T.POSTGRESTER_DEPRECATION_BASE_URI);
   });
 
   test("should return the expected uri", () => {
-    const uri = (postgrester as any).buildUri("/path", true);
+    const uri = (postgresterClient as any).buildUri("/path", true);
 
     expect(uri).toStrictEqual("/path?select=*");
   });
 
   describe("#select()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester.select("aColumn").select("aResource(*)") as any).buildUri(
+      const uri = (postgresterClient.select("aColumn").select("aResource(*)") as any).buildUri(
         "/path",
         true
       );
@@ -35,16 +45,15 @@ describe("Postgrester", () => {
 
   describe("#orderBy()", () => {
     test("should return the expected uri with root sorters", () => {
-      const uri = (postgrester.orderBy("aColumn").orderBy("anotherColumn", true) as any).buildUri(
-        "/path",
-        true
-      );
+      const uri = (postgresterClient
+        .orderBy("aColumn")
+        .orderBy("anotherColumn", true) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual("/path?select=*&order=aColumn.asc,anotherColumn.desc");
     });
 
     test("should return the expected uri with foreign sorters", () => {
-      const uri = (postgrester
+      const uri = (postgresterClient
         .orderBy("aResource.aColumn")
         .orderBy("aResource.anotherColumn", true) as any).buildUri("/path", true);
 
@@ -54,13 +63,13 @@ describe("Postgrester", () => {
 
   describe("#page()", () => {
     test("should return the expected uri with no limit", () => {
-      const uri = (postgrester.page(0) as any).buildUri("/path", true);
+      const uri = (postgresterClient.page(0) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual("/path?select=*&limit=10&offset=0");
     });
 
     test("should return the expected uri with a limit", () => {
-      const uri = (postgrester.page(1, 5) as any).buildUri("/path", true);
+      const uri = (postgresterClient.page(1, 5) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual("/path?select=*&limit=5&offset=5");
     });
@@ -68,7 +77,7 @@ describe("Postgrester", () => {
 
   describe("#is()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester.is("aColumn", true).is("anotherColumn", null) as any).buildUri(
+      const uri = (postgresterClient.is("aColumn", true).is("anotherColumn", null) as any).buildUri(
         "/path",
         true
       );
@@ -79,7 +88,7 @@ describe("Postgrester", () => {
 
   describe("#eq()", () => {
     test("should return the expected uri with a boolean & a null values", () => {
-      const uri = (postgrester.eq("aColumn", true).eq("anotherColumn", null) as any).buildUri(
+      const uri = (postgresterClient.eq("aColumn", true).eq("anotherColumn", null) as any).buildUri(
         "/path",
         true
       );
@@ -88,16 +97,15 @@ describe("Postgrester", () => {
     });
 
     test("should return the expected uri with a number & a string values", () => {
-      const uri = (postgrester.eq("aColumn", 123).eq("anotherColumn", "aValue") as any).buildUri(
-        "/path",
-        true
-      );
+      const uri = (postgresterClient
+        .eq("aColumn", 123)
+        .eq("anotherColumn", "aValue") as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual("/path?select=*&aColumn=eq.123&anotherColumn=eq.aValue");
     });
 
     test("should return the expected uri with quotes", () => {
-      const uri = (postgrester.eq("aColumn", "aValue", true) as any).buildUri("/path", true);
+      const uri = (postgresterClient.eq("aColumn", "aValue", true) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(`/path?select=*&aColumn=eq."aValue"`);
     });
@@ -105,7 +113,7 @@ describe("Postgrester", () => {
 
   describe("#in()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester
+      const uri = (postgresterClient
         .in("aColumn", [123, 456])
         .in("anotherColumn", ["aValue", "anotherValue"]) as any).buildUri("/path", true);
 
@@ -117,7 +125,7 @@ describe("Postgrester", () => {
 
   describe("#like()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester
+      const uri = (postgresterClient
         .like("aColumn", "aValue")
         .like("anotherColumn", "anotherValue") as any).buildUri("/path", true);
 
@@ -129,7 +137,7 @@ describe("Postgrester", () => {
 
   describe("#ilike()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester
+      const uri = (postgresterClient
         .ilike("aColumn", "aValue")
         .ilike("anotherColumn", "anotherValue") as any).buildUri("/path", true);
 
@@ -141,7 +149,7 @@ describe("Postgrester", () => {
 
   describe("#not()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester.not
+      const uri = (postgresterClient.not
         .is("column_1", false)
         .not.eq("column_2", "value_2")
         .not.in("column_3", ["value_3_1", "value_3_2"])
@@ -156,7 +164,7 @@ describe("Postgrester", () => {
 
   describe("#and()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester.and
+      const uri = (postgresterClient.and
         .is("column_1", false)
         .eq("column_2", "value_2")
         .in("column_3", ["value_3_1", "value_3_2"])
@@ -171,7 +179,7 @@ describe("Postgrester", () => {
 
   describe("#or()", () => {
     test("should return the expected uri", () => {
-      const uri = (postgrester.or
+      const uri = (postgresterClient.or
         .is("column_1", false)
         .eq("column_2", "value_2")
         .in("column_3", ["value_3_1", "value_3_2"])
@@ -191,7 +199,7 @@ describe("Postgrester", () => {
         headers: {}
       });
 
-      const { data, pagesLength } = await postgrester.page(0, 10).get("/path");
+      const { data, pagesLength } = await postgresterClient.page(0, 10).get("/path");
 
       expect(mockedAxios.get).toHaveBeenCalledWith("/path?select=*&limit=10&offset=0", {});
 
@@ -207,7 +215,7 @@ describe("Postgrester", () => {
         }
       });
 
-      const { data, pagesLength } = await postgrester.page(0, 10).get("/path", true);
+      const { data, pagesLength } = await postgresterClient.page(0, 10).get("/path", true);
 
       expect(mockedAxios.get).toHaveBeenCalledWith("/path?select=*&limit=10&offset=0", {
         headers: {
@@ -222,7 +230,7 @@ describe("Postgrester", () => {
 
   describe("#post()", () => {
     test("should call axios.post() with the expected params", async () => {
-      await postgrester.post("/path", {});
+      await postgresterClient.post("/path", {});
 
       expect(mockedAxios.post).toHaveBeenCalledWith("/path", {});
     });
@@ -230,7 +238,7 @@ describe("Postgrester", () => {
 
   describe("#patch()", () => {
     test("should call axios.patch() with the expected params", async () => {
-      await postgrester.patch("/path", {});
+      await postgresterClient.patch("/path", {});
 
       expect(mockedAxios.post).toHaveBeenCalledWith("/path", {});
     });
@@ -238,7 +246,7 @@ describe("Postgrester", () => {
 
   describe("#delete()", () => {
     test("should call axios.delete() with the expected params", async () => {
-      await postgrester.delete("/path");
+      await postgresterClient.delete("/path");
 
       expect(mockedAxios.delete).toHaveBeenCalledWith("/path");
     });

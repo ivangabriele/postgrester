@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 
+// tslint:disable-next-line:import-name
+import T from "./texts";
 import { PostgresterConfig, PostgresterConstructor, PostgresterInstance } from "./types";
 
 const Postgrester: PostgresterConstructor = class Postgrester implements PostgresterInstance {
@@ -35,10 +37,14 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
   }
 
   constructor({ axiosConfig, axiosInstance, baseUri }: PostgresterConfig) {
-    if (axiosInstance !== null) {
+    if (baseUri !== undefined) {
+      console.warn(T.POSTGRESTER_DEPRECATION_BASE_URI);
+    }
+
+    if (axiosInstance !== undefined) {
       this.axios = axiosInstance;
     } else {
-      const baseAxiosConfig = axiosConfig !== null ? axiosConfig : {};
+      const baseAxiosConfig = axiosConfig !== undefined ? axiosConfig : {};
 
       this.axios = axios.create({
         ...baseAxiosConfig,

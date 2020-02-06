@@ -3,9 +3,10 @@
 import { AxiosInstance, AxiosRequestConfig } from "axios";
 
 export type PostgresterConfig = {
-  axiosConfig: AxiosRequestConfig | null;
-  axiosInstance: AxiosInstance | null;
-  baseUri: string;
+  axiosConfig?: AxiosRequestConfig;
+  axiosInstance?: AxiosInstance;
+  /** @deprecated https://github.com/SocialGouv/postgrester/wiki/Deprecations#baseuri-option */
+  baseUri?: string;
 };
 export type PostgresterOptions = Partial<PostgresterConfig>;
 
