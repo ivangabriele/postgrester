@@ -231,36 +231,7 @@ Promise<void>
 
 ## Contribute
 
-### Get Started
-
-```bash
-yarn
-```
-
-### Test
-
-- All Tests: `yarn test`
-- Lint Tests: `yarn test:lint`
-- Unit Tests: `yarn test:unit`
-- Unit Tests (watch): `yarn test:watch`
-
-### Publish
-
-```bash
-npm version [major|minor|patch|preversion]
-```
-
-This will automatically tag, push, build and publish to Github & NPM.
-
-### Recommended VSCode Settings
-
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.rulers": [100],
-  "travis.pro": true
-}
-```
+Please check our [contributing documentation][link-contributing].
 
 ## License
 
@@ -272,6 +243,8 @@ This package and its sources are distributed under [Apache 2.0][link-license].
 [img-license]: https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square
 [img-npm]: https://img.shields.io/npm/v/postgrester?style=flat-square
 [img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrester/master?style=flat-square
+
+[link-contributing]: https://github.com/SocialGouv/postgrester/blob/master/CONTRIBUTING.md
 [link-coveralls]: https://coveralls.io/github/SocialGouv/postgrester
 [link-license]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
 [link-npm]: https://www.npmjs.com/package/postgrester
