@@ -11,6 +11,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Deprecate `baseUri` option.
 
+### Fixed
+
+- `baseURL` property in `axiosConfig` option.
+
 ## [1.0.5] - 2020-01-23
 
 ### Changed

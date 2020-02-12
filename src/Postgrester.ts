@@ -44,12 +44,13 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     if (axiosInstance !== undefined) {
       this.axios = axiosInstance;
     } else {
-      const baseAxiosConfig = axiosConfig !== undefined ? axiosConfig : {};
+      const newAxiosConfig = axiosConfig !== undefined ? axiosConfig : {};
 
-      this.axios = axios.create({
-        ...baseAxiosConfig,
-        baseURL: baseUri
-      });
+      if (baseUri !== undefined) {
+        newAxiosConfig.baseURL = baseUri;
+      }
+
+      this.axios = axios.create(newAxiosConfig);
     }
 
     this.reset();
