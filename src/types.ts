@@ -22,10 +22,15 @@ export interface PostgresterInstance {
   delete(path: string): Promise<void>;
   eq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
   get<T = any>(path: string, withPagesLength?: boolean): Promise<{ data: T; pagesLength: number }>;
+  gt(column: string, value: number | string, isInclusive?: boolean): this;
+  gte(column: string, value: number | string): this;
   ilike(column: string, value: string): this;
   in(column: string, values: (number | string)[], withQuotes?: boolean): this;
   is(column: string, value: boolean | null): this;
   like(column: string, value: string): this;
+  lt(column: string, value: number | string, isInclusive?: boolean): this;
+  lte(column: string, value: number | string): this;
+  neq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
   orderBy(column: string, isDesc?: boolean): this;
   page(pageIndex: number, limit?: number): this;
   patch(path: string, data: Object): Promise<void>;

@@ -3,11 +3,45 @@
 [![License][img-license]][link-license]
 [![NPM Version][img-npm]][link-npm]
 [![Build Status][img-travis]][link-travis]
-[![Code Coverage][img-coveralls]][link-coveralls]
+[![Code Coverage][img-codecov]][link-codecov]
 
-JS/TS [PostgREST][link-postgrest] API Client.
+[PostgREST][link-postgrest] API Client for Javascript and Typescript.
 
-## Install
+---
+
+- [Gettting Started](#gettting-started)
+- [Example](#example)
+- [API](#api)
+  - [Options](#options)
+  - [Vertical Filtering (columns) Methods](#vertical-filtering-columns-methods)
+    - [select()](#select)
+  - [Hoizontal Filtering (rows) Methods](#hoizontal-filtering-rows-methods)
+    - [is()](#is)
+    - [eq()](#eq)
+    - [neq()](#neq)
+    - [gt()](#gt)
+    - [gte()](#gte)
+    - [lt()](#lt)
+    - [lte()](#lte)
+    - [in()](#in)
+    - [like()](#like)
+    - [ilike()](#ilike)
+    - [not](#not)
+    - [and](#and)
+    - [or](#or)
+  - [Ordering Methods](#ordering-methods)
+    - [orderBy()](#orderby)
+  - [Pagination Methods](#pagination-methods)
+    - [page()](#page)
+  - [Request Methods](#request-methods)
+    - [get()](#get)
+    - [post()](#post)
+    - [patch()](#patch)
+    - [delete()](#delete)
+- [Contribute](#contribute)
+- [License](#license)
+
+## Gettting Started
 
 ```bash
 npm i postgrester
@@ -58,40 +92,80 @@ When creating the instance via `postgrester.create([options])`:
 > `baseUri` will be **deprecated** in the next minor version release and should be removed in the
 > next major one.
 
-### Query Methods
+### Vertical Filtering (columns) Methods
 
 #### select()
-
-**Parameters**
 
 | Name       | Type     | Default      | Examples                                  |
 | ---------- | -------- | ------------ | ----------------------------------------- |
 | `selector` | `string` | **required** | `"*"`, `"author"`, `"category(id,label)"` |
 
-### Filter Methods
+You can also rename them by inserting a colon: `original_column_name:new_column_name`.
+
+### Hoizontal Filtering (rows) Methods
 
 #### is()
 
-**Parameters**
-
-| Name     | Type             | Default      | Examples                       |
-| -------- | ---------------- | ------------ | ------------------------------ |
-| `column` | `string`         | **required** | `"author"`, `"category.label"` |
-| `value`  | `boolean | null` | **required** |                                |
+| Name     | Type              | Default      | Examples                       |
+| -------- | ----------------- | ------------ | ------------------------------ |
+| `column` | `string`          | **required** | `"author"`, `"category.label"` |
+| `value`  | `boolean \| null` | **required** |                                |
 
 #### eq()
 
-**Parameters**
+| Name         | Type                                  | Default      | Examples                       |
+| ------------ | ------------------------------------- | ------------ | ------------------------------ |
+| `column`     | `string`                              | **required** | `"author"`, `"category.label"` |
+| `value`      | `boolean \| number \| null \| string` | **required** | `"Leo Tolstoy"`                |
+| `withQuotes` | `boolean`                             | `false`      |                                |
 
-| Name         | Type               | Default      | Examples                       |
-| ------------ | ------------------ | ------------ | ------------------------------ |
-| `column`     | `string`           | **required** | `"author"`, `"category.label"` |
-| `value`      | `number \| string` | **required** | `"Leo Tolstoy"`                |
-| `withQuotes` | `boolean`          | `false`      |                                |
+> **Note:** `boolean` and `null` values will be converted into an `is()`.
+
+#### neq()
+
+| Name         | Type                                  | Default      | Examples                       |
+| ------------ | ------------------------------------- | ------------ | ------------------------------ |
+| `column`     | `string`                              | **required** | `"author"`, `"category.label"` |
+| `value`      | `boolean \| number \| null \| string` | **required** | `"Leo Tolstoy"`                |
+| `withQuotes` | `boolean`                             | `false`      |                                |
+
+> **Note:** `boolean` and `null` values will be converted into a **negated** `is()`.
+
+#### gt()
+
+| Name          | Type               | Default      | Examples                                |
+| ------------- | ------------------ | ------------ | --------------------------------------- |
+| `column`      | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
+| `value`       | `number \| string` | **required** |                                         |
+| `isInclusive` | `boolean`          | `false`      |                                         |
+
+#### gte()
+
+| Name     | Type               | Default      | Examples                                |
+| -------- | ------------------ | ------------ | --------------------------------------- |
+| `column` | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
+| `value`  | `number \| string` | **required** |                                         |
+
+> **Note:** This method is an alias for `gt()` with `<isInclusive>` set to `true`.
+
+#### lt()
+
+| Name          | Type               | Default      | Examples                                |
+| ------------- | ------------------ | ------------ | --------------------------------------- |
+| `column`      | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
+| `value`       | `number \| string` | **required** |                                         |
+| `isInclusive` | `boolean`          | `false`      |                                         |
+
+#### lte()
+
+| Name     | Type               | Default      | Examples                                |
+| -------- | ------------------ | ------------ | --------------------------------------- |
+| `column` | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
+| `value`  | `number \| string` | **required** |                                         |
+
+> **Note:** This method is an alias for `lt()` with `<isInclusive>` set to `true`.
 
 #### in()
-
-**Parameters**
 
 | Name         | Type                      | Default      | Examples                               |
 | ------------ | ------------------------- | ------------ | -------------------------------------- |
@@ -101,16 +175,12 @@ When creating the instance via `postgrester.create([options])`:
 
 #### like()
 
-**Parameters**
-
 | Name     | Type     | Default      | Examples                       |
 | -------- | -------- | ------------ | ------------------------------ |
 | `column` | `string` | **required** | `"author"`, `"category.label"` |
 | `value`  | `string` | **required** | `"Tolstoy"`                    |
 
 #### ilike()
-
-**Parameters**
 
 | Name     | Type     | Default      | Examples                       |
 | -------- | -------- | ------------ | ------------------------------ |
@@ -138,11 +208,9 @@ This getter condition **ALL** the following filtering methods to be conjuncted a
 For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will 
 **unite** both `is()` and `ilike()` filters.
 
-### Sort Methods
+### Ordering Methods
 
 #### orderBy()
-
-**Parameters**
 
 | Name     | Type      | Default      | Examples                       |
 | -------- | --------- | ------------ | ------------------------------ |
@@ -153,20 +221,16 @@ For example, `postgrestClient.and.is("category_id", null).ilike("author", "dosto
 
 #### page()
 
-**Parameters**
-
 | Name        | Type     | Default      | Examples   |
 | ----------- | -------- | ------------ | ---------- |
 | `pageIndex` | `number` | **required** | `0`, `123` |
 | `limit`     | `number` | `10`         |            |
 
-### Call Methods
+### Request Methods
 
-All calling methods are asynchronous promises.
+All request methods are asynchronous promises.
 
 #### get()
-
-**Parameters**
 
 | Name            | Type      | Default      | Examples   |
 | --------------- | --------- | ------------ | ---------- |
@@ -189,8 +253,6 @@ Promise<{
 
 #### post()
 
-**Parameters**
-
 | Name | Type     | Default      | Examples   |
 | ---- | -------- | ------------ | ---------- |
 | path | `string` | **required** | `"/books"` |
@@ -203,8 +265,6 @@ Promise<void>
 
 #### patch()
 
-**Parameters**
-
 | Name | Type     | Default      | Examples   |
 | ---- | -------- | ------------ | ---------- |
 | path | `string` | **required** | `"/books"` |
@@ -216,8 +276,6 @@ Promise<void>
 ```
 
 #### delete()
-
-**Parameters**
 
 | Name | Type     | Default      | Examples   |
 | ---- | -------- | ------------ | ---------- |
@@ -239,13 +297,13 @@ This package and its sources are distributed under [Apache 2.0][link-license].
 
 ---
 
-[img-coveralls]: https://img.shields.io/coveralls/github/SocialGouv/postgrester/master?style=flat-square
+[img-codecov]: https://img.shields.io/codecov/c/github/SocialGouv/postgrester?style=flat-square
 [img-license]: https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square
 [img-npm]: https://img.shields.io/npm/v/postgrester?style=flat-square
 [img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrester/master?style=flat-square
 
 [link-contributing]: https://github.com/SocialGouv/postgrester/blob/master/CONTRIBUTING.md
-[link-coveralls]: https://coveralls.io/github/SocialGouv/postgrester
+[link-codecov]: https://codecov.io/gh/SocialGouv/postgrester
 [link-license]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
 [link-npm]: https://www.npmjs.com/package/postgrester
 [link-postgrest]: http://postgrest.org

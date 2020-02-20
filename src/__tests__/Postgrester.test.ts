@@ -26,14 +26,14 @@ describe("Postgrester", () => {
     expect(console.warn).toHaveBeenCalledWith(T.POSTGRESTER_DEPRECATION_BASE_URI);
   });
 
-  test("should return the expected uri", () => {
+  test("should return the expected path", () => {
     const uri = (postgresterClient as any).buildUri("/path", true);
 
     expect(uri).toStrictEqual("/path?select=*");
   });
 
   describe("#select()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path", () => {
       const uri = (postgresterClient.select("aColumn").select("aResource(*)") as any).buildUri(
         "/path",
         true
@@ -44,7 +44,7 @@ describe("Postgrester", () => {
   });
 
   describe("#orderBy()", () => {
-    test("should return the expected uri with root sorters", () => {
+    test("should return the expected path with root sorters", () => {
       const uri = (postgresterClient
         .orderBy("aColumn")
         .orderBy("anotherColumn", true) as any).buildUri("/path", true);
@@ -52,7 +52,7 @@ describe("Postgrester", () => {
       expect(uri).toStrictEqual("/path?select=*&order=aColumn.asc,anotherColumn.desc");
     });
 
-    test("should return the expected uri with foreign sorters", () => {
+    test("should return the expected path with foreign sorters", () => {
       const uri = (postgresterClient
         .orderBy("aResource.aColumn")
         .orderBy("aResource.anotherColumn", true) as any).buildUri("/path", true);
@@ -62,13 +62,13 @@ describe("Postgrester", () => {
   });
 
   describe("#page()", () => {
-    test("should return the expected uri with no limit", () => {
+    test("should return the expected path with no limit", () => {
       const uri = (postgresterClient.page(0) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual("/path?select=*&limit=10&offset=0");
     });
 
-    test("should return the expected uri with a limit", () => {
+    test("should return the expected path with a limit", () => {
       const uri = (postgresterClient.page(1, 5) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual("/path?select=*&limit=5&offset=5");
@@ -76,7 +76,7 @@ describe("Postgrester", () => {
   });
 
   describe("#is()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path", () => {
       const uri = (postgresterClient.is("aColumn", true).is("anotherColumn", null) as any).buildUri(
         "/path",
         true
@@ -87,7 +87,7 @@ describe("Postgrester", () => {
   });
 
   describe("#eq()", () => {
-    test("should return the expected uri with a boolean & a null values", () => {
+    test("should return the expected path with {boolean} and {null} values", () => {
       const uri = (postgresterClient.eq("aColumn", true).eq("anotherColumn", null) as any).buildUri(
         "/path",
         true
@@ -96,7 +96,7 @@ describe("Postgrester", () => {
       expect(uri).toStrictEqual("/path?select=*&aColumn=is.true&anotherColumn=is.null");
     });
 
-    test("should return the expected uri with a number & a string values", () => {
+    test("should return the expected path with {number} and {string} values", () => {
       const uri = (postgresterClient
         .eq("aColumn", 123)
         .eq("anotherColumn", "aValue") as any).buildUri("/path", true);
@@ -104,15 +104,88 @@ describe("Postgrester", () => {
       expect(uri).toStrictEqual("/path?select=*&aColumn=eq.123&anotherColumn=eq.aValue");
     });
 
-    test("should return the expected uri with quotes", () => {
+    test("should return the expected path with quotes", () => {
       const uri = (postgresterClient.eq("aColumn", "aValue", true) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(`/path?select=*&aColumn=eq."aValue"`);
     });
   });
 
+  describe("#neq()", () => {
+    test("should return the expected path with {boolean} and {null} values", () => {
+      const uri = (postgresterClient.neq("C1", true).neq("C2", null) as any).buildUri(
+        "/path",
+        true
+      );
+
+      expect(uri).toStrictEqual("/path?select=*&C1=not.is.true&C2=not.is.null");
+    });
+
+    test("should return the expected path with {number} and {string} values", () => {
+      const uri = (postgresterClient.neq("C1", 1).neq("C2", "V2") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual("/path?select=*&C1=neq.1&C2=neq.V2");
+    });
+
+    test("should return the expected path with <withQuotes> = TRUE", () => {
+      const uri = (postgresterClient.neq("C1", "V1", true) as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual(`/path?select=*&C1=neq."V1"`);
+    });
+  });
+
+  describe("#gt()", () => {
+    test("should return the expected path with {number} and {string} values", () => {
+      const uri = (postgresterClient.gt("C1", 1).gt("C2", "V2") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual("/path?select=*&C1=gt.1&C2=gt.V2");
+    });
+
+    test("should return the expected path with with {number} and {string} values AND <isInclusive> = TRUE", () => {
+      const uri = (postgresterClient.gt("C1", 1, true).gt("C2", "V2", true) as any).buildUri(
+        "/path",
+        true
+      );
+
+      expect(uri).toStrictEqual(`/path?select=*&C1=gte.1&C2=gte.V2`);
+    });
+  });
+
+  describe("#gte()", () => {
+    test("should return the expected path with {number} and {string} values", () => {
+      const uri = (postgresterClient.gte("C1", 1).gte("C2", "V2") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual("/path?select=*&C1=gte.1&C2=gte.V2");
+    });
+  });
+
+  describe("#lt()", () => {
+    test("should return the expected path with {number} and {string} values", () => {
+      const uri = (postgresterClient.lt("C1", 1).lt("C2", "V2") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual("/path?select=*&C1=lt.1&C2=lt.V2");
+    });
+
+    test("should return the expected path with with {number} and {string} values AND <isInclusive> = TRUE", () => {
+      const uri = (postgresterClient.lt("C1", 1, true).lt("C2", "V2", true) as any).buildUri(
+        "/path",
+        true
+      );
+
+      expect(uri).toStrictEqual(`/path?select=*&C1=lte.1&C2=lte.V2`);
+    });
+  });
+
+  describe("#lte()", () => {
+    test("should return the expected path with {number} and {string} values", () => {
+      const uri = (postgresterClient.lte("C1", 1).lte("C2", "V2") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual("/path?select=*&C1=lte.1&C2=lte.V2");
+    });
+  });
+
   describe("#in()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path", () => {
       const uri = (postgresterClient
         .in("aColumn", [123, 456])
         .in("anotherColumn", ["aValue", "anotherValue"]) as any).buildUri("/path", true);
@@ -124,7 +197,7 @@ describe("Postgrester", () => {
   });
 
   describe("#like()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path", () => {
       const uri = (postgresterClient
         .like("aColumn", "aValue")
         .like("anotherColumn", "anotherValue") as any).buildUri("/path", true);
@@ -136,7 +209,7 @@ describe("Postgrester", () => {
   });
 
   describe("#ilike()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path", () => {
       const uri = (postgresterClient
         .ilike("aColumn", "aValue")
         .ilike("anotherColumn", "anotherValue") as any).buildUri("/path", true);
@@ -148,46 +221,85 @@ describe("Postgrester", () => {
   });
 
   describe("#not()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path with `is()`, `eq()`, `neq()`, `gt()`, `gte()`, `lt()` and `lte()`", () => {
       const uri = (postgresterClient.not
-        .is("column_1", false)
-        .not.eq("column_2", "value_2")
-        .not.in("column_3", ["value_3_1", "value_3_2"])
-        .not.like("column_4", "value_4")
-        .not.ilike("column_5", "value_5") as any).buildUri("/path", true);
+        .is("C1", false)
+        .not.eq("C2", 2)
+        .not.neq("C3", 3)
+        .not.gt("C4", 4)
+        .not.gte("C5", 5)
+        .not.lt("C6", 6)
+        .not.lte("C7", 7) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&column_1=not.is.false&column_2=not.eq.value_2&column_3=not.in.(value_3_1,value_3_2)&column_4=not.like.\"*value_4*\"&column_5=not.ilike.\"*value_5*\"`
+        `/path?select=*&C1=not.is.false&C2=not.eq.2&C3=not.neq.3&C4=not.gt.4&C5=not.gte.5&C6=not.lt.6&C7=not.lte.7`
+      );
+    });
+
+    test("should return the expected path with `in()`, `like()` and `ilike()`", () => {
+      const uri = (postgresterClient.not.not
+        .in("C1", ["V11", "V12"])
+        .not.like("C2", "V2")
+        .not.ilike("C3", "V3") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual(
+        `/path?select=*&C1=not.in.(V11,V12)&C2=not.like."*V2*"&C3=not.ilike."*V3*"`
       );
     });
   });
 
   describe("#and()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path with `is()`, `eq()`, `neq()`, `gt()`, `gte()`, `lt()` and `lte()`", () => {
       const uri = (postgresterClient.and
-        .is("column_1", false)
-        .eq("column_2", "value_2")
-        .in("column_3", ["value_3_1", "value_3_2"])
-        .like("column_4", "value_4")
-        .ilike("column_5", "value_5") as any).buildUri("/path", true);
+        .is("C1", true)
+        .eq("C2", 2)
+        .neq("C3", 3)
+        .gt("C4", 4)
+        .gte("C5", 5)
+        .lt("C6", 6)
+        .lte("C7", 7) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&and=(column_1.is.false,column_2.eq.value_2,column_3.in.(value_3_1,value_3_2),column_4.like.\"*value_4*\",column_5.ilike.\"*value_5*\")`
+        `/path?select=*&and=(C1.is.true,C2.eq.2,C3.neq.3,C4.gt.4,C5.gte.5,C6.lt.6,C7.lte.7)`
+      );
+    });
+
+    test("should return the expected path with `in()`, `like()` and `ilike()`", () => {
+      const uri = (postgresterClient.and
+        .in("C1", ["V11", "V12"])
+        .like("C2", "V2")
+        .ilike("C3", "V3") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual(
+        `/path?select=*&and=(C1.in.(V11,V12),C2.like.\"*V2*\",C3.ilike.\"*V3*\")`
       );
     });
   });
 
   describe("#or()", () => {
-    test("should return the expected uri", () => {
+    test("should return the expected path with `is()`, `eq()`, `neq()`, `gt()`, `gte()`, `lt()` and `lte()`", () => {
       const uri = (postgresterClient.or
-        .is("column_1", false)
-        .eq("column_2", "value_2")
-        .in("column_3", ["value_3_1", "value_3_2"])
-        .like("column_4", "value_4")
-        .ilike("column_5", "value_5") as any).buildUri("/path", true);
+        .is("C1", true)
+        .eq("C2", 2)
+        .neq("C3", 3)
+        .gt("C4", 4)
+        .gte("C5", 5)
+        .lt("C6", 6)
+        .lte("C7", 7) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&or=(column_1.is.false,column_2.eq.value_2,column_3.in.(value_3_1,value_3_2),column_4.like.\"*value_4*\",column_5.ilike.\"*value_5*\")`
+        `/path?select=*&or=(C1.is.true,C2.eq.2,C3.neq.3,C4.gt.4,C5.gte.5,C6.lt.6,C7.lte.7)`
+      );
+    });
+
+    test("should return the expected path with `in()`, `like()` and `ilike()`", () => {
+      const uri = (postgresterClient.or
+        .in("C1", ["V11", "V12"])
+        .like("C2", "V2")
+        .ilike("C3", "V3") as any).buildUri("/path", true);
+
+      expect(uri).toStrictEqual(
+        `/path?select=*&or=(C1.in.(V11,V12),C2.like.\"*V2*\",C3.ilike.\"*V3*\")`
       );
     });
   });
