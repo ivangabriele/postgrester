@@ -14,11 +14,10 @@ jobs:
     - stage: Test
       name: Unit Tests (v10)
       node_js: "10"
-      install: yarn --frozen-lockfile
     - stage: Test
       name: Unit Tests (v12)
-      install: yarn --frozen-lockfile
-      after_script: ./node_modules/.bin/coveralls < ./coverage/lcov.info
+      after_script:
+        - npx codecov
 
     - stage: Release
       name: Github

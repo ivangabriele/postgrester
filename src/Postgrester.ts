@@ -198,7 +198,7 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
       return this.is(column, value);
     }
 
-    const isNot = this.isNot ? "not." : "";
+    const mayBeNot = this.isNot ? "not." : "";
     const cleanValue = withQuotes ? `"${value}"` : value;
 
     if (this.isAnd) {
@@ -206,22 +206,86 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     } else if (this.isOr) {
       this.ors.push(`${column}.eq.${cleanValue}`);
     } else {
-      this.queries.push(`${column}=${isNot}eq.${cleanValue}`);
+      this.queries.push(`${column}=${mayBeNot}eq.${cleanValue}`);
       this.isNot = false;
     }
 
     return this;
   }
 
+  public neq(column: string, value: boolean | number | string | null, withQuotes = false) {
+    if (typeof value === "boolean" || value === null) {
+      return this.not.is(column, value);
+    }
+
+    const mayBeNot = this.isNot ? "not." : "";
+    const cleanValue = withQuotes ? `"${value}"` : value;
+
+    if (this.isAnd) {
+      this.ands.push(`${column}.neq.${cleanValue}`);
+    } else if (this.isOr) {
+      this.ors.push(`${column}.neq.${cleanValue}`);
+    } else {
+      this.queries.push(`${column}=${mayBeNot}neq.${cleanValue}`);
+      this.isNot = false;
+    }
+
+    return this;
+  }
+
+  public gt(column: string, value: number | string, isInclusive = false) {
+    const mayBeNot = this.isNot ? "not." : "";
+    const operator = isInclusive ? "gte" : "gt";
+
+    if (this.isAnd) {
+      this.ands.push(`${column}.${operator}.${value}`);
+    } else if (this.isOr) {
+      this.ors.push(`${column}.${operator}.${value}`);
+    } else {
+      this.queries.push(`${column}=${mayBeNot}${operator}.${value}`);
+      this.isNot = false;
+    }
+
+    return this;
+  }
+
+  public gte(column: string, value: number | string) {
+    this.gt(column, value, true);
+
+    return this;
+  }
+
+  public lt(column: string, value: number | string, isInclusive = false) {
+    const mayBeNot = this.isNot ? "not." : "";
+    const operator = isInclusive ? "lte" : "lt";
+
+    if (this.isAnd) {
+      this.ands.push(`${column}.${operator}.${value}`);
+    } else if (this.isOr) {
+      this.ors.push(`${column}.${operator}.${value}`);
+    } else {
+      this.queries.push(`${column}=${mayBeNot}${operator}.${value}`);
+      this.isNot = false;
+    }
+
+    return this;
+  }
+
+  public lte(column: string, value: number | string) {
+    this.lt(column, value, true);
+
+    return this;
+  }
+
   public like(column: string, value: string) {
-    const isNot = this.isNot ? "not." : "";
+    const mayBeNot = this.isNot ? "not." : "";
 
     if (this.isAnd) {
       this.ands.push(`${column}.like."*${value}*"`);
     } else if (this.isOr) {
       this.ors.push(`${column}.like."*${value}*"`);
     } else {
-      this.queries.push(`${column}=${isNot}like."*${value}*"`);
+      this.queries.push(`${column}=${mayBeNot}like."*${value}*"`);
       this.isNot = false;
     }
 
@@ -229,14 +293,14 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
   }
 
   public ilike(column: string, value: string) {
-    const isNot = this.isNot ? "not." : "";
+    const mayBeNot = this.isNot ? "not." : "";
 
     if (this.isAnd) {
       this.ands.push(`${column}.ilike."*${value}*"`);
     } else if (this.isOr) {
       this.ors.push(`${column}.ilike."*${value}*"`);
     } else {
-      this.queries.push(`${column}=${isNot}ilike."*${value}*"`);
+      this.queries.push(`${column}=${mayBeNot}ilike."*${value}*"`);
       this.isNot = false;
     }
 
@@ -245,14 +309,14 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
 
   public in(column: string, values: (number | string)[], withQuotes = false) {
     const finalValues = withQuotes ? values.map(value => `"${value}"`) : values;
-    const isNot = this.isNot ? "not." : "";
+    const mayBeNot = this.isNot ? "not." : "";
 
     if (this.isAnd) {
       this.ands.push(`${column}.in.(${finalValues.join(",")})`);
     } else if (this.isOr) {
       this.ors.push(`${column}.in.(${finalValues.join(",")})`);
     } else {
-      this.queries.push(`${column}=${isNot}in.(${finalValues.join(",")})`);
+      this.queries.push(`${column}=${mayBeNot}in.(${finalValues.join(",")})`);
       this.isNot = false;
     }
 
@@ -260,14 +324,14 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
   }
 
   public is(column: string, value: boolean | null) {
-    const isNot = this.isNot ? "not." : "";
+    const mayBeNot = this.isNot ? "not." : "";
 
     if (this.isAnd) {
       this.ands.push(`${column}.is.${String(value)}`);
     } else if (this.isOr) {
       this.ors.push(`${column}.is.${String(value)}`);
     } else {
-      this.queries.push(`${column}=${isNot}is.${String(value)}`);
+      this.queries.push(`${column}=${mayBeNot}is.${String(value)}`);
     }
 
     this.isNot = false;
