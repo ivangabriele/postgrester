@@ -146,17 +146,24 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     return { data, pagesLength };
   }
 
-  public async post(path: string, data: Object) {
+  public async post(path: string, data: object | object[]) {
     this.reset();
 
     await this.axios.post(path, data);
   }
 
-  public async patch(path: string, data: Object) {
+  public async patch(path: string, data: object) {
     const uri = this.buildUri(path);
     this.reset();
 
     await this.axios.patch(uri, data);
+  }
+
+  public async put(path: string, data: object) {
+    const uri = this.buildUri(path);
+    this.reset();
+
+    await this.axios.put(uri, data);
   }
 
   public async delete(path: string) {

@@ -20,8 +20,12 @@ export interface PostgresterInstance {
   not: this;
 
   delete(path: string): Promise<void>;
-  eq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
   get<T = any>(path: string, withPagesLength?: boolean): Promise<{ data: T; pagesLength: number }>;
+  patch(path: string, data: object): Promise<void>;
+  post(path: string, data: object | object[]): Promise<void>;
+  put(path: string, data: object): Promise<void>;
+
+  eq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
   gt(column: string, value: number | string, isInclusive?: boolean): this;
   gte(column: string, value: number | string): this;
   ilike(column: string, value: string): this;
@@ -33,8 +37,6 @@ export interface PostgresterInstance {
   neq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
   orderBy(column: string, isDesc?: boolean): this;
   page(pageIndex: number, limit?: number): this;
-  patch(path: string, data: Object): Promise<void>;
-  post(path: string, data: Object): Promise<void>;
   select(selector: string): this;
 }
 
