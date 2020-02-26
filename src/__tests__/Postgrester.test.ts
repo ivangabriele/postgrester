@@ -356,6 +356,14 @@ describe("Postgrester", () => {
     });
   });
 
+  describe("#put()", () => {
+    test("should call axios.put() with the expected params", async () => {
+      await postgresterClient.put("/path", {});
+
+      expect(mockedAxios.put).toHaveBeenCalledWith("/path", {});
+    });
+  });
+
   describe("#delete()", () => {
     test("should call axios.delete() with the expected params", async () => {
       await postgresterClient.delete("/path");

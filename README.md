@@ -5,7 +5,7 @@
 [![Build Status][img-travis]][link-travis]
 [![Code Coverage][img-codecov]][link-codecov]
 
-[PostgREST][link-postgrest] API Client for Javascript and Typescript.
+Isomorphic [PostgREST][link-postgrest] API Client for Javascript and Typescript.
 
 ---
 
@@ -37,6 +37,7 @@
     - [get()](#get)
     - [post()](#post)
     - [patch()](#patch)
+    - [put()](#put)
     - [delete()](#delete)
 - [Contribute](#contribute)
 - [License](#license)
@@ -232,10 +233,10 @@ All request methods are asynchronous promises.
 
 #### get()
 
-| Name            | Type      | Default      | Examples   |
-| --------------- | --------- | ------------ | ---------- |
-| path            | `string`  | **required** | `"/books"` |
-| withPagesLength | `boolean` | `false`      |            |
+| Name              | Type      | Default      | Examples   |
+| ----------------- | --------- | ------------ | ---------- |
+| `path`            | `string`  | **required** | `"/books"` |
+| `withPagesLength` | `boolean` | `false`      |            |
 
 **Return value**
 
@@ -253,9 +254,10 @@ Promise<{
 
 #### post()
 
-| Name | Type     | Default      | Examples   |
-| ---- | -------- | ------------ | ---------- |
-| path | `string` | **required** | `"/books"` |
+| Name  | Type                  | Default      | Examples   |
+| ----- | --------------------- | ------------ | ---------- |
+| `path` | `string`             | **required** | `"/books"` |
+| `data` | `object \| object[]` | **required** |            |
 
 **Return value**
 
@@ -265,9 +267,23 @@ Promise<void>
 
 #### patch()
 
-| Name | Type     | Default      | Examples   |
-| ---- | -------- | ------------ | ---------- |
-| path | `string` | **required** | `"/books"` |
+| Name  | Type      | Default      | Examples   |
+| ----- | --------- | ------------ | ---------- |
+| `path` | `string` | **required** | `"/books"` |
+| `data` | `object` | **required** |            |
+
+**Return value**
+
+```ts
+Promise<void>
+```
+
+#### put()
+
+| Name  | Type      | Default      | Examples   |
+| ----- | --------- | ------------ | ---------- |
+| `path` | `string` | **required** | `"/books"` |
+| `data` | `object` | **required** |            |
 
 **Return value**
 

@@ -12,7 +12,6 @@ yarn
 - Lint Tests: `yarn test:lint`
 - Unit Tests: `yarn test:unit`
 - Unit Tests (watch): `yarn test:watch`
-- E2E Tests: `yarn test:e2e`
 
 ## Release
 
