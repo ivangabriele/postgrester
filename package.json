@@ -32,7 +32,7 @@
     "keep-a-changelog": "0.10.0",
     "numeral": "2.0.6",
     "prettier": "1.19.1",
-    "rollup": "1.31.1",
+    "rollup": "2.0.2",
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
