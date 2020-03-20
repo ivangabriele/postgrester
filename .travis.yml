@@ -19,6 +19,18 @@ jobs:
       after_script:
         - npx codecov
 
+    - stage: Test
+      name: E2E Tests
+      services:
+        - docker
+      before_script:
+        # Stop Travis out-of-the-box PostgreSQL service:
+        - sudo service postgresql stop
+        # Prepare containers:
+        - yarn setup
+      script:
+        - yarn test:e2e
+
     - stage: Release
       name: Github
       script: skip

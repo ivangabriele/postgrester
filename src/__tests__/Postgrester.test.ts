@@ -8,8 +8,8 @@ import T from "../texts";
 
 const postgresterClient = new Postgrester({
   axiosConfig: {
-    baseURL: "https://api.example.com"
-  }
+    baseURL: "https://api.example.com",
+  },
 });
 
 describe("Postgrester", () => {
@@ -19,7 +19,7 @@ describe("Postgrester", () => {
 
   test("should return the expected warning when using `baseUri` option", () => {
     new Postgrester({
-      baseUri: "https://api.example.com"
+      baseUri: "https://api.example.com",
     });
 
     expect(console.warn).toHaveBeenCalledTimes(1);
@@ -36,7 +36,7 @@ describe("Postgrester", () => {
     test("should return the expected path", () => {
       const uri = (postgresterClient.select("aColumn").select("aResource(*)") as any).buildUri(
         "/path",
-        true
+        true,
       );
 
       expect(uri).toStrictEqual("/path?select=aColumn,aResource(*)");
@@ -79,7 +79,7 @@ describe("Postgrester", () => {
     test("should return the expected path", () => {
       const uri = (postgresterClient.is("aColumn", true).is("anotherColumn", null) as any).buildUri(
         "/path",
-        true
+        true,
       );
 
       expect(uri).toStrictEqual("/path?select=*&aColumn=is.true&anotherColumn=is.null");
@@ -90,7 +90,7 @@ describe("Postgrester", () => {
     test("should return the expected path with {boolean} and {null} values", () => {
       const uri = (postgresterClient.eq("aColumn", true).eq("anotherColumn", null) as any).buildUri(
         "/path",
-        true
+        true,
       );
 
       expect(uri).toStrictEqual("/path?select=*&aColumn=is.true&anotherColumn=is.null");
@@ -115,7 +115,7 @@ describe("Postgrester", () => {
     test("should return the expected path with {boolean} and {null} values", () => {
       const uri = (postgresterClient.neq("C1", true).neq("C2", null) as any).buildUri(
         "/path",
-        true
+        true,
       );
 
       expect(uri).toStrictEqual("/path?select=*&C1=not.is.true&C2=not.is.null");
@@ -144,7 +144,7 @@ describe("Postgrester", () => {
     test("should return the expected path with with {number} and {string} values AND <isInclusive> = TRUE", () => {
       const uri = (postgresterClient.gt("C1", 1, true).gt("C2", "V2", true) as any).buildUri(
         "/path",
-        true
+        true,
       );
 
       expect(uri).toStrictEqual(`/path?select=*&C1=gte.1&C2=gte.V2`);
@@ -169,7 +169,7 @@ describe("Postgrester", () => {
     test("should return the expected path with with {number} and {string} values AND <isInclusive> = TRUE", () => {
       const uri = (postgresterClient.lt("C1", 1, true).lt("C2", "V2", true) as any).buildUri(
         "/path",
-        true
+        true,
       );
 
       expect(uri).toStrictEqual(`/path?select=*&C1=lte.1&C2=lte.V2`);
@@ -191,7 +191,7 @@ describe("Postgrester", () => {
         .in("anotherColumn", ["aValue", "anotherValue"]) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        "/path?select=*&aColumn=in.(123,456)&anotherColumn=in.(aValue,anotherValue)"
+        "/path?select=*&aColumn=in.(123,456)&anotherColumn=in.(aValue,anotherValue)",
       );
     });
   });
@@ -203,7 +203,7 @@ describe("Postgrester", () => {
         .like("anotherColumn", "anotherValue") as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&aColumn=like."*aValue*"&anotherColumn=like."*anotherValue*"`
+        `/path?select=*&aColumn=like.*aValue*&anotherColumn=like.*anotherValue*`,
       );
     });
   });
@@ -215,7 +215,7 @@ describe("Postgrester", () => {
         .ilike("anotherColumn", "anotherValue") as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&aColumn=ilike."*aValue*"&anotherColumn=ilike."*anotherValue*"`
+        `/path?select=*&aColumn=ilike.*aValue*&anotherColumn=ilike.*anotherValue*`,
       );
     });
   });
@@ -232,7 +232,7 @@ describe("Postgrester", () => {
         .not.lte("C7", 7) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&C1=not.is.false&C2=not.eq.2&C3=not.neq.3&C4=not.gt.4&C5=not.gte.5&C6=not.lt.6&C7=not.lte.7`
+        `/path?select=*&C1=not.is.false&C2=not.eq.2&C3=not.neq.3&C4=not.gt.4&C5=not.gte.5&C6=not.lt.6&C7=not.lte.7`,
       );
     });
 
@@ -243,7 +243,7 @@ describe("Postgrester", () => {
         .not.ilike("C3", "V3") as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&C1=not.in.(V11,V12)&C2=not.like."*V2*"&C3=not.ilike."*V3*"`
+        `/path?select=*&C1=not.in.(V11,V12)&C2=not.like.*V2*&C3=not.ilike.*V3*`,
       );
     });
   });
@@ -260,7 +260,7 @@ describe("Postgrester", () => {
         .lte("C7", 7) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&and=(C1.is.true,C2.eq.2,C3.neq.3,C4.gt.4,C5.gte.5,C6.lt.6,C7.lte.7)`
+        `/path?select=*&and=(C1.is.true,C2.eq.2,C3.neq.3,C4.gt.4,C5.gte.5,C6.lt.6,C7.lte.7)`,
       );
     });
 
@@ -270,9 +270,7 @@ describe("Postgrester", () => {
         .like("C2", "V2")
         .ilike("C3", "V3") as any).buildUri("/path", true);
 
-      expect(uri).toStrictEqual(
-        `/path?select=*&and=(C1.in.(V11,V12),C2.like.\"*V2*\",C3.ilike.\"*V3*\")`
-      );
+      expect(uri).toStrictEqual(`/path?select=*&and=(C1.in.(V11,V12),C2.like.*V2*,C3.ilike.*V3*)`);
     });
   });
 
@@ -288,7 +286,7 @@ describe("Postgrester", () => {
         .lte("C7", 7) as any).buildUri("/path", true);
 
       expect(uri).toStrictEqual(
-        `/path?select=*&or=(C1.is.true,C2.eq.2,C3.neq.3,C4.gt.4,C5.gte.5,C6.lt.6,C7.lte.7)`
+        `/path?select=*&or=(C1.is.true,C2.eq.2,C3.neq.3,C4.gt.4,C5.gte.5,C6.lt.6,C7.lte.7)`,
       );
     });
 
@@ -298,9 +296,7 @@ describe("Postgrester", () => {
         .like("C2", "V2")
         .ilike("C3", "V3") as any).buildUri("/path", true);
 
-      expect(uri).toStrictEqual(
-        `/path?select=*&or=(C1.in.(V11,V12),C2.like.\"*V2*\",C3.ilike.\"*V3*\")`
-      );
+      expect(uri).toStrictEqual(`/path?select=*&or=(C1.in.(V11,V12),C2.like.*V2*,C3.ilike.*V3*)`);
     });
   });
 
@@ -308,7 +304,7 @@ describe("Postgrester", () => {
     test("should return the expected response", async () => {
       mockedAxios.get.mockResolvedValueOnce({
         data: [],
-        headers: {}
+        headers: {},
       });
 
       const { data, pagesLength } = await postgresterClient.page(0, 10).get("/path");
@@ -323,16 +319,16 @@ describe("Postgrester", () => {
       mockedAxios.get.mockResolvedValueOnce({
         data: [],
         headers: {
-          "content-range": "0-9/1103"
-        }
+          "content-range": "0-9/1103",
+        },
       });
 
       const { data, pagesLength } = await postgresterClient.page(0, 10).get("/path", true);
 
       expect(mockedAxios.get).toHaveBeenCalledWith("/path?select=*&limit=10&offset=0", {
         headers: {
-          Prefer: "count=exact"
-        }
+          Prefer: "count=exact",
+        },
       });
 
       expect(data).toEqual([]);

@@ -28,7 +28,7 @@ export interface PostgresterInstance {
   eq(
     column: string,
     value: boolean | number | string | null,
-    withQuotes?: boolean
+    withQuotes?: boolean,
   ): PostgresterInstance;
   gt(column: string, value: number | string, isInclusive?: boolean): PostgresterInstance;
   gte(column: string, value: number | string): PostgresterInstance;
@@ -41,7 +41,7 @@ export interface PostgresterInstance {
   neq(
     column: string,
     value: boolean | number | string | null,
-    withQuotes?: boolean
+    withQuotes?: boolean,
   ): PostgresterInstance;
   orderBy(column: string, isDesc?: boolean): PostgresterInstance;
   page(pageIndex: number, limit?: number): PostgresterInstance;

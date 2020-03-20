@@ -5,13 +5,18 @@
 
 /.github
 /.vscode
+/e2e
+/db
 /scripts
 /src
+/tests
 
 /.editorconfig
 /.prettierrc
 /.travis.yml
+/docker-compose.yml
 /jest.config.js
+/knexfile.js
 /RELEASE_NOTES.md
 /rollup.config.js
 /tsconfig.json

@@ -4,7 +4,7 @@ import {
   PostgresterConfig,
   PostgresterInstance,
   PostgresterOptions,
-  PostgresterStatic
+  PostgresterStatic,
 } from "./types";
 
 /**

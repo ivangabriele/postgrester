@@ -5,6 +5,8 @@
   },
   "rules": {
     "no-console": [true, "log"],
+    "prettier": true,
     "variable-name": [true, "allow-pascal-case", "ban-keywords", "check-format"]
-  }
+  },
+  "rulesDirectory": ["tslint-plugin-prettier"]
 }
