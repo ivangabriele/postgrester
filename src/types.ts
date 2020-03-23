@@ -15,9 +15,9 @@ export interface PostgresterConstructor {
 }
 
 export interface PostgresterInstance {
-  and: this;
-  or: this;
-  not: this;
+  and: PostgresterInstance;
+  or: PostgresterInstance;
+  not: PostgresterInstance;
 
   delete(path: string): Promise<void>;
   get<T = any>(path: string, withPagesLength?: boolean): Promise<{ data: T; pagesLength: number }>;
@@ -25,19 +25,27 @@ export interface PostgresterInstance {
   post(path: string, data: object | object[]): Promise<void>;
   put(path: string, data: object): Promise<void>;
 
-  eq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
-  gt(column: string, value: number | string, isInclusive?: boolean): this;
-  gte(column: string, value: number | string): this;
-  ilike(column: string, value: string): this;
-  in(column: string, values: (number | string)[], withQuotes?: boolean): this;
-  is(column: string, value: boolean | null): this;
-  like(column: string, value: string): this;
-  lt(column: string, value: number | string, isInclusive?: boolean): this;
-  lte(column: string, value: number | string): this;
-  neq(column: string, value: boolean | number | string | null, withQuotes?: boolean): this;
-  orderBy(column: string, isDesc?: boolean): this;
-  page(pageIndex: number, limit?: number): this;
-  select(selector: string): this;
+  eq(
+    column: string,
+    value: boolean | number | string | null,
+    withQuotes?: boolean
+  ): PostgresterInstance;
+  gt(column: string, value: number | string, isInclusive?: boolean): PostgresterInstance;
+  gte(column: string, value: number | string): PostgresterInstance;
+  ilike(column: string, value: string): PostgresterInstance;
+  in(column: string, values: (number | string)[], withQuotes?: boolean): PostgresterInstance;
+  is(column: string, value: boolean | null): PostgresterInstance;
+  like(column: string, value: string): PostgresterInstance;
+  lt(column: string, value: number | string, isInclusive?: boolean): PostgresterInstance;
+  lte(column: string, value: number | string): PostgresterInstance;
+  neq(
+    column: string,
+    value: boolean | number | string | null,
+    withQuotes?: boolean
+  ): PostgresterInstance;
+  orderBy(column: string, isDesc?: boolean): PostgresterInstance;
+  page(pageIndex: number, limit?: number): PostgresterInstance;
+  select(selector: string): PostgresterInstance;
 }
 
 export interface PostgresterStatic extends PostgresterInstance {
