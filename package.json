@@ -18,7 +18,8 @@
     "test:watch": "yarn test:unit --watch",
     "preversion": "yarn test",
     "version": "node ./scripts/ci/release.js",
-    "postversion": "git push --tags && git push origin HEAD"
+    "postversion": "git push --tags && git push origin HEAD",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "axios": "0.19.2"
