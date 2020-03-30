@@ -130,8 +130,8 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     const config = withPagesLength
       ? {
           headers: {
-            Prefer: "count=exact"
-          }
+            Prefer: "count=exact",
+          },
         }
       : {};
 
@@ -288,11 +288,11 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     const mayBeNot = this.isNot ? "not." : "";
 
     if (this.isAnd) {
-      this.ands.push(`${column}.like."*${value}*"`);
+      this.ands.push(`${column}.like.*${value}*`);
     } else if (this.isOr) {
-      this.ors.push(`${column}.like."*${value}*"`);
+      this.ors.push(`${column}.like.*${value}*`);
     } else {
-      this.queries.push(`${column}=${mayBeNot}like."*${value}*"`);
+      this.queries.push(`${column}=${mayBeNot}like.*${value}*`);
       this.isNot = false;
     }
 
@@ -303,11 +303,11 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     const mayBeNot = this.isNot ? "not." : "";
 
     if (this.isAnd) {
-      this.ands.push(`${column}.ilike."*${value}*"`);
+      this.ands.push(`${column}.ilike.*${value}*`);
     } else if (this.isOr) {
-      this.ors.push(`${column}.ilike."*${value}*"`);
+      this.ors.push(`${column}.ilike.*${value}*`);
     } else {
-      this.queries.push(`${column}=${mayBeNot}ilike."*${value}*"`);
+      this.queries.push(`${column}=${mayBeNot}ilike.*${value}*`);
       this.isNot = false;
     }
 

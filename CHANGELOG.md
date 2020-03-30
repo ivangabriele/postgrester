@@ -10,6 +10,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Chainable methods typings.
+- `like()` and `ilike()` methods useless double-quotes.
 
 ## [1.3.0] - 2020-02-26
 

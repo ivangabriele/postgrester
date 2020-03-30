@@ -8,7 +8,7 @@ describe("postgrester", () => {
   describe("#create()", () => {
     test("should return the expected Postgrester instance", () => {
       const options = {
-        baseUri: "https://contributions-api.codedutravail.num.social.gouv.fr"
+        baseUri: "https://contributions-api.codedutravail.num.social.gouv.fr",
       };
 
       const postgrestClient = postgrester.create(options);

@@ -3,5 +3,5 @@ global.console = {
   error: jest.fn(),
   info: jest.fn(),
   log: console.log,
-  warn: jest.fn()
+  warn: jest.fn(),
 };

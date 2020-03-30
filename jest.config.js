@@ -1,5 +1,3 @@
-// https://basarat.gitbooks.io/typescript/docs/testing/jest.html
-
 module.exports = {
   bail: true,
   collectCoverage: true,
@@ -9,7 +7,7 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/tests/jest.setup.js"],
   testRegex: `(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$`,
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
   },
-  verbose: true
+  verbose: true,
 };
