@@ -313,10 +313,10 @@ This package and its sources are distributed under [Apache 2.0][link-license].
 
 ---
 
-[img-codecov]: https://img.shields.io/codecov/c/github/SocialGouv/postgrester?style=flat-square
-[img-license]: https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square
-[img-npm]: https://img.shields.io/npm/v/postgrester?style=flat-square
-[img-travis]: https://img.shields.io/travis/com/SocialGouv/postgrester/master?style=flat-square
+[img-codecov]: https://badgen.net/codecov/c/github/SocialGouv/postgrester
+[img-license]: https://badgen.net/github/license/SocialGouv/postgrester
+[img-npm]: https://badgen.net/npm/v/postgrester
+[img-travis]: https://badgen.net/travis/SocialGouv/postgrester
 
 [link-contributing]: https://github.com/SocialGouv/postgrester/blob/master/CONTRIBUTING.md
 [link-codecov]: https://codecov.io/gh/SocialGouv/postgrester
