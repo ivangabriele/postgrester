@@ -20,7 +20,10 @@ export interface PostgresterInstance {
   not: PostgresterInstance;
 
   delete(path: string): Promise<void>;
-  get<T = any>(path: string, withPagesLength?: boolean): Promise<{ data: T; pagesLength: number }>;
+  get<T = any>(
+    path: string,
+    withPagesLength?: boolean,
+  ): Promise<{ data: T; pagesLength: number; totalLength: number }>;
   patch(path: string, data: object): Promise<void>;
   post(path: string, data: object | object[]): Promise<void>;
   put(path: string, data: object): Promise<void>;
