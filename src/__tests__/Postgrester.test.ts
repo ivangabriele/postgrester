@@ -307,12 +307,13 @@ describe("Postgrester", () => {
         headers: {},
       });
 
-      const { data, pagesLength } = await postgresterClient.page(0, 10).get("/path");
+      const { data, pagesLength, totalLength } = await postgresterClient.page(0, 10).get("/path");
 
       expect(mockedAxios.get).toHaveBeenCalledWith("/path?select=*&limit=10&offset=0", {});
 
       expect(data).toEqual([]);
       expect(pagesLength).toEqual(-1);
+      expect(totalLength).toEqual(-1);
     });
 
     test("should return the expected response when requiring pages length", async () => {
@@ -323,7 +324,9 @@ describe("Postgrester", () => {
         },
       });
 
-      const { data, pagesLength } = await postgresterClient.page(0, 10).get("/path", true);
+      const { data, pagesLength, totalLength } = await postgresterClient
+        .page(0, 10)
+        .get("/path", true);
 
       expect(mockedAxios.get).toHaveBeenCalledWith("/path?select=*&limit=10&offset=0", {
         headers: {
@@ -333,6 +336,7 @@ describe("Postgrester", () => {
 
       expect(data).toEqual([]);
       expect(pagesLength).toEqual(111);
+      expect(totalLength).toEqual(1103);
     });
   });
 

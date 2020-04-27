@@ -244,13 +244,13 @@ All request methods are asynchronous promises.
 Promise<{
   data: any;
   pagesLength: number;
+  totalLength: number;
 }>
 ```
 
-> **:warning: Important**<br> > `pagesLength` will equal `-1` if `<withPagesLength>` parameter is
-> `false` or if the pages length couldn't be calculated.
-
-`pagesLength`
+> **:warning: Important**<br>
+> Both `pagesLength` and `totalLength` will equal `-1` if `<withPagesLength>` parameter is `false`
+> or if the length couldn't be resolved.`
 
 #### post()
 

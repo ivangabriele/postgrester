@@ -137,13 +137,14 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
 
     const { data, headers } = await this.axios.get<T>(uri, config);
 
+    let totalLength = -1;
     let pagesLength = -1;
     if (limit > 0 && withPagesLength && headers["content-range"] !== undefined) {
-      const length = Number(headers["content-range"].split("/")[1]);
-      pagesLength = Math.ceil(length / limit);
+      totalLength = Number(headers["content-range"].split("/")[1]);
+      pagesLength = Math.ceil(totalLength / limit);
     }
 
-    return { data, pagesLength };
+    return { data, pagesLength, totalLength };
   }
 
   public async post(path: string, data: object | object[]) {
