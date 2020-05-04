@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
-    "archiver": "3.1.1",
+    "archiver": "4.0.1",
     "colors": "1.4.0",
     "copyfiles": "2.2.0",
     "jest": "25.5.4",
