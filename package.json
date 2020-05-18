@@ -44,7 +44,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-typescript2": "0.27.1",
     "shelljs": "0.8.4",
-    "ts-jest": "25.5.1",
+    "ts-jest": "26.0.0",
     "tslint": "6.1.2",
     "tslint-config-airbnb": "5.11.2",
     "tslint-config-prettier": "1.18.0",
