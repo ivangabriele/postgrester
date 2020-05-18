@@ -568,10 +568,10 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@25.2.1":
-  version "25.2.1"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-25.2.1.tgz#9544cd438607955381c1bdbdb97767a249297db5"
-  integrity sha512-msra1bCaAeEdkSyA0CZ6gW1ukMIvZ5YoJkdXw/qhQdsuuDlFTcEUrUw8CLCPt2rVRUfXlClVvK2gvPs9IokZaA==
+"@types/jest@25.2.2":
+  version "25.2.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-25.2.2.tgz#6a752e7a00f69c3e790ea00c345029d5cefa92bf"
+  integrity sha512-aRctFbG8Pb7DSLzUt/fEtL3q/GKb9mretFuYhRub2J0q6NhzBYbx9HTQzHrWgBNIxYOlxGNVe6Z54cpbUt+Few==
   dependencies:
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
@@ -3620,25 +3620,25 @@ pg-connection-string@2.2.0:
   resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.2.0.tgz#caab4d38a9de4fdc29c9317acceed752897de41c"
   integrity sha512-xB/+wxcpFipUZOQcSzcgkjcNOosGhEoPSjz06jC89lv1dj7mc9bZv6wLVy8M2fVjP0a/xN0N988YDq1L0FhK3A==
 
-pg-connection-string@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.2.2.tgz#fdc2fb2084e655f0b3e6e50c69330f6932df452e"
-  integrity sha512-+hel4DGuSZCjCZwglAuyi+XlodHnKmrbyTw0hVWlmGN2o4AfJDkDo5obAFzblS5M5PFBMx0uDt5Y1QjlNC+tqg==
+pg-connection-string@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.2.3.tgz#48e1158ec37eaa82e98dbcb7307103ec303fe0e7"
+  integrity sha512-I/KCSQGmOrZx6sMHXkOs2MjddrYcqpza3Dtsy0AjIgBr/bZiPJRK9WhABXN1Uy1UDazRbi9gZEzO2sAhL5EqiQ==
 
 pg-int8@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"
   integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
 
-pg-pool@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.2.0.tgz#edde90f21556f83d16c45f1efd696af4afec6f2f"
-  integrity sha512-7BLwDNDEfPFjE9vmZLcJPLFwuDAVGZ5lIZo2MeQfwYG7EPGfdNVis/dz6obI/yKqvQIx2sf6QBKXMLB+y/ftgA==
+pg-pool@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-3.2.1.tgz#5f4afc0f58063659aeefa952d36af49fa28b30e0"
+  integrity sha512-BQDPWUeKenVrMMDN9opfns/kZo4lxmSWhIqo+cSAF7+lfi9ZclQbr9vfnlNaPr8wYF3UYjm5X0yPAhbcgqNOdA==
 
-pg-protocol@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.2.2.tgz#e16ef28087aa725ce933af092bfe38d8f609faab"
-  integrity sha512-r8hGxHOk3ccMjjmhFJ/QOSVW5A+PP84TeRlEwB/cQ9Zu+bvtZg8Z59Cx3AMfVQc9S0Z+EG+HKhicF1W1GN5Eqg==
+pg-protocol@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.2.4.tgz#3139cac0e51347f1e21e03954b1bb9fe2c20962e"
+  integrity sha512-/8L/G+vW/VhWjTGXpGh8XVkXOFx1ZDY+Yuz//Ab8CfjInzFkreI+fDG3WjCeSra7fIZwAFxzbGptNbm8xSXenw==
 
 pg-types@^2.1.0:
   version "2.2.0"
@@ -3651,16 +3651,16 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/pg/-/pg-8.1.0.tgz#e5ac5ac2b77bad438130d93982cb60485d5c1a8c"
-  integrity sha512-Jp+XSNTGYDztc2FgIbmBXeeYMR7kKjfgnl3R+ioO6rkcxDmaea+YPp/gaxe13PBnJAFYyEGl0ixpwPm2gb6eUw==
+pg@8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-8.2.1.tgz#f5a81f5e2025182fbe701514d3e1a43e68a616ac"
+  integrity sha512-DKzffhpkWRr9jx7vKxA+ur79KG+SKw+PdjMb1IRhMiKI9zqYUGczwFprqy+5Veh/DCcFs1Y6V8lRLN5I1DlleQ==
   dependencies:
     buffer-writer "2.0.0"
     packet-reader "1.0.0"
-    pg-connection-string "^2.2.2"
-    pg-pool "^3.2.0"
-    pg-protocol "^1.2.2"
+    pg-connection-string "^2.2.3"
+    pg-pool "^3.2.1"
+    pg-protocol "^1.2.4"
     pg-types "^2.1.0"
     pgpass "1.x"
     semver "4.3.2"
@@ -4028,16 +4028,16 @@ rollup-plugin-node-resolve@5.2.0:
     resolve "^1.11.1"
     rollup-pluginutils "^2.8.1"
 
-rollup-plugin-typescript2@0.27.0:
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.27.0.tgz#95ff96f9e07d5000a9d2df4d76b548f9a1f83511"
-  integrity sha512-SRKG/Canve3cxBsqhY1apIBznqnX9X/WU3Lrq3XSwmTmFqccj3+//logLXFEmp+PYFNllSVng+f4zjqRTPKNkA==
+rollup-plugin-typescript2@0.27.1:
+  version "0.27.1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.27.1.tgz#4f27193408a8f040139eed3e3db7b0c7f3668200"
+  integrity sha512-RJl77Bbj1EunAQDC3dK/O2HWuSUX3oJbRGzyLoS5o9W4Hs1Nix3Gavqj1Lzs5Y6Ff4H2xXfmZ1WWUQCYocSbzQ==
   dependencies:
     "@rollup/pluginutils" "^3.0.8"
     find-cache-dir "^3.3.1"
     fs-extra "8.1.0"
     resolve "1.15.1"
-    tslib "1.11.1"
+    tslib "1.11.2"
 
 rollup-pluginutils@^2.5.0, rollup-pluginutils@^2.8.1:
   version "2.8.2"
@@ -4046,10 +4046,10 @@ rollup-pluginutils@^2.5.0, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.9.0.tgz#6b09bf82b68351417269b333e4bb2624ebd1e148"
-  integrity sha512-a3fLsmHUbO2OCE/Qp1aM8PtqnCWHysc9QfYs4PIGbUDraeNMH1v0uT7nqQeDB3IfDjNNLl8H2Z7UKs0q1SbK1g==
+rollup@2.10.3:
+  version "2.10.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.10.3.tgz#b024155a93a13412ff547764f8fd4f67fbf64f51"
+  integrity sha512-Pw4isow3qDZvIozWtEBSZckSxpZgAj11hLijykaO/qZLNq4VGZVZOANBzoWlMabTtg9edQTe3pkLU39PoIkOeg==
   optionalDependencies:
     fsevents "~2.1.2"
 
@@ -4644,20 +4644,15 @@ ts-jest@25.5.1:
     semver "6.x"
     yargs-parser "18.x"
 
-tslib@1.11.1:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
-  integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==
+tslib@1.11.2, tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.1:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
+  integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
 
 tslib@1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
   integrity sha512-f/qGG2tUkrISBlQZEjEqoZ3B2+npJjIf04H1wuAv9iA8i04Icp+61KRXxFdha22670NJopsZCIjhC3SnjPRKrQ==
-
-tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.1:
-  version "1.11.2"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
-  integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
 
 tslint-config-airbnb@5.11.2:
   version "5.11.2"
@@ -4793,10 +4788,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@3.8.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+typescript@3.9.2:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.2.tgz#64e9c8e9be6ea583c54607677dd4680a1cf35db9"
+  integrity sha512-q2ktq4n/uLuNNShyayit+DTobV2ApPEo/6so68JaD5ojvc/6GClBipedB9zNWYxRSAlZXAe405Rlijzl6qDiSw==
 
 uglify-js@^3.1.4:
   version "3.9.2"
