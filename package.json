@@ -26,7 +26,7 @@
     "axios": "0.19.2"
   },
   "devDependencies": {
-    "@types/jest": "25.2.3",
+    "@types/jest": "26.0.0",
     "archiver": "4.0.1",
     "colors": "1.4.0",
     "copyfiles": "2.3.0",
