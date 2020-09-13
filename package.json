@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.13",
-    "archiver": "5.0.0",
+    "archiver": "5.0.2",
     "colors": "1.4.0",
     "copyfiles": "2.3.0",
     "jest": "26.4.2",
@@ -37,7 +37,7 @@
     "numeral": "2.0.6",
     "pg": "8.3.3",
     "prettier": "2.1.1",
-    "rollup": "2.26.10",
+    "rollup": "2.26.11",
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
