@@ -25,7 +25,11 @@ export interface PostgresterInstance {
     withPagesLength?: boolean,
   ): Promise<{ data: T; pagesLength: number; totalLength: number }>;
   patch(path: string, data: object): Promise<void>;
-  post(path: string, data: object | object[]): Promise<void>;
+  post(
+    path: string,
+    data: object | object[],
+    upsertOptions?: PostgesterPostUpsertOptions,
+  ): Promise<void>;
   put(path: string, data: object): Promise<void>;
 
   eq(
@@ -54,3 +58,8 @@ export interface PostgresterInstance {
 export interface PostgresterStatic extends PostgresterInstance {
   create(options?: PostgresterOptions): PostgresterInstance;
 }
+
+export type PostgesterPostUpsertOptions = {
+  onConflict?: string;
+  resolution?: "ignore-duplicates" | "merge-duplicates";
+};

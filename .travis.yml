@@ -1,5 +1,5 @@
 language: node_js
-node_js: "12"
+node_js: "14"
 
 cache:
   yarn: true
@@ -16,6 +16,9 @@ jobs:
       node_js: "10"
     - stage: Test
       name: Unit Tests (v12)
+      node_js: "12"
+    - stage: Test
+      name: Unit Tests (v14)
       after_script:
         - npx codecov
 
