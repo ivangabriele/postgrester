@@ -134,35 +134,35 @@ You can also rename them by inserting a colon: `original_column_name:new_column_
 
 #### gt()
 
-| Name          | Type               | Default      | Examples                                |
-| ------------- | ------------------ | ------------ | --------------------------------------- |
-| `column`      | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
-| `value`       | `number \| string` | **required** |                                         |
-| `isInclusive` | `boolean`          | `false`      |                                         |
+| Name          | Type               | Default      | Examples                              |
+| ------------- | ------------------ | ------------ | ------------------------------------- |
+| `column`      | `string`           | **required** | `"quantity"`, `"category.updated_at"` |
+| `value`       | `number \| string` | **required** |                                       |
+| `isInclusive` | `boolean`          | `false`      |                                       |
 
 #### gte()
 
-| Name     | Type               | Default      | Examples                                |
-| -------- | ------------------ | ------------ | --------------------------------------- |
-| `column` | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
-| `value`  | `number \| string` | **required** |                                         |
+| Name     | Type               | Default      | Examples                              |
+| -------- | ------------------ | ------------ | ------------------------------------- |
+| `column` | `string`           | **required** | `"quantity"`, `"category.updated_at"` |
+| `value`  | `number \| string` | **required** |                                       |
 
 > **Note:** This method is an alias for `gt()` with `<isInclusive>` set to `true`.
 
 #### lt()
 
-| Name          | Type               | Default      | Examples                                |
-| ------------- | ------------------ | ------------ | --------------------------------------- |
-| `column`      | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
-| `value`       | `number \| string` | **required** |                                         |
-| `isInclusive` | `boolean`          | `false`      |                                         |
+| Name          | Type               | Default      | Examples                              |
+| ------------- | ------------------ | ------------ | ------------------------------------- |
+| `column`      | `string`           | **required** | `"quantity"`, `"category.updated_at"` |
+| `value`       | `number \| string` | **required** |                                       |
+| `isInclusive` | `boolean`          | `false`      |                                       |
 
 #### lte()
 
-| Name     | Type               | Default      | Examples                                |
-| -------- | ------------------ | ------------ | --------------------------------------- |
-| `column` | `string`           | **required** | `"quantity"`, `"category.updated_at"`   |
-| `value`  | `number \| string` | **required** |                                         |
+| Name     | Type               | Default      | Examples                              |
+| -------- | ------------------ | ------------ | ------------------------------------- |
+| `column` | `string`           | **required** | `"quantity"`, `"category.updated_at"` |
+| `value`  | `number \| string` | **required** |                                       |
 
 > **Note:** This method is an alias for `lt()` with `<isInclusive>` set to `true`.
 
@@ -254,10 +254,11 @@ Promise<{
 
 #### post()
 
-| Name  | Type                  | Default      | Examples   |
-| ----- | --------------------- | ------------ | ---------- |
-| `path` | `string`             | **required** | `"/books"` |
-| `data` | `object \| object[]` | **required** |            |
+| Name            | Type                                                                              | Default                              | Examples   |
+| --------------- | --------------------------------------------------------------------------------- | ------------------------------------ | ---------- |
+| `path`          | `string`                                                                          | **required**                         | `"/books"` |
+| `data`          | `object \| object[]`                                                              | **required**                         |            |
+| `upsertOptions` | `{ onConflict?: string, resolution?: "ignore-duplicates" \| "merge-duplicates" }` | `{ resolution: "merge-duplicates" }` |            |
 
 **Return value**
 
@@ -265,10 +266,15 @@ Promise<{
 Promise<void>
 ```
 
+> **:warning: Important**<br>
+> If `data` is an array, it will be considered as an
+> [upsert](http://postgrest.org/en/v7.0.0/api.html#upsert). In this case, if you don't specify
+> otherwise in `upsertOptions`, the `merge-duplicates` method will be used by default.
+
 #### patch()
 
-| Name  | Type      | Default      | Examples   |
-| ----- | --------- | ------------ | ---------- |
+| Name   | Type     | Default      | Examples   |
+| ------ | -------- | ------------ | ---------- |
 | `path` | `string` | **required** | `"/books"` |
 | `data` | `object` | **required** |            |
 
@@ -280,8 +286,8 @@ Promise<void>
 
 #### put()
 
-| Name  | Type      | Default      | Examples   |
-| ----- | --------- | ------------ | ---------- |
+| Name   | Type     | Default      | Examples   |
+| ------ | -------- | ------------ | ---------- |
 | `path` | `string` | **required** | `"/books"` |
 | `data` | `object` | **required** |            |
 

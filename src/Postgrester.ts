@@ -2,7 +2,12 @@ import axios, { AxiosInstance } from "axios";
 
 // tslint:disable-next-line:import-name
 import T from "./texts";
-import { PostgresterConfig, PostgresterConstructor, PostgresterInstance } from "./types";
+import {
+  PostgresterConfig,
+  PostgresterConstructor,
+  PostgresterInstance,
+  PostgesterPostUpsertOptions,
+} from "./types";
 
 const Postgrester: PostgresterConstructor = class Postgrester implements PostgresterInstance {
   private ands: string[];
@@ -147,8 +152,31 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     return { data, pagesLength, totalLength };
   }
 
-  public async post(path: string, data: object | object[]) {
+  public async post(
+    path: string,
+    data: object | object[],
+    upsertOptions: PostgesterPostUpsertOptions = {},
+  ) {
     this.reset();
+
+    // Upsert
+    // http://postgrest.org/en/v7.0.0/api.html#upsert
+    if (Array.isArray(data)) {
+      if (upsertOptions.resolution === undefined) {
+        upsertOptions.resolution = "merge-duplicates";
+      }
+
+      const { onConflict, resolution } = upsertOptions;
+      const fullPath = onConflict !== undefined ? `${path}?on_conflict=${onConflict}` : path;
+
+      await this.axios.post(fullPath, data, {
+        headers: {
+          Prefer: `resolution=${resolution}`,
+        },
+      });
+
+      return;
+    }
 
     await this.axios.post(path, data);
   }

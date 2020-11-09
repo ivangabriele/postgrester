@@ -14,6 +14,8 @@ const postgresterClient = new Postgrester({
 
 describe("Postgrester", () => {
   beforeEach(() => {
+    mockedAxios.post.mockClear();
+
     (postgresterClient as any).reset();
   });
 
@@ -346,13 +348,47 @@ describe("Postgrester", () => {
 
       expect(mockedAxios.post).toHaveBeenCalledWith("/path", {});
     });
+
+    test("should call axios.post() with the expected params (upsert)", async () => {
+      await postgresterClient.post("/path", []);
+
+      expect(mockedAxios.post).toHaveBeenCalledWith("/path", [], {
+        headers: {
+          "Prefer": "resolution=merge-duplicates"
+        }
+      });
+    });
+
+    test("should call axios.post() with the expected params (upsert / ON CONFLICT)", async () => {
+      await postgresterClient.post("/path", [], {
+        onConflict: "C1",
+      });
+
+      expect(mockedAxios.post).toHaveBeenCalledWith("/path?on_conflict=C1", [], {
+        headers: {
+          "Prefer": "resolution=merge-duplicates"
+        }
+      });
+    });
+
+    test("should call axios.post() with the expected params (upsert / ignore duplicates)", async () => {
+      await postgresterClient.post("/path", [], {
+        resolution: "ignore-duplicates"
+      });
+
+      expect(mockedAxios.post).toHaveBeenCalledWith("/path", [], {
+        headers: {
+          "Prefer": "resolution=ignore-duplicates"
+        }
+      });
+    });
   });
 
   describe("#patch()", () => {
     test("should call axios.patch() with the expected params", async () => {
       await postgresterClient.patch("/path", {});
 
-      expect(mockedAxios.post).toHaveBeenCalledWith("/path", {});
+      expect(mockedAxios.patch).toHaveBeenCalledWith("/path", {});
     });
   });
 
