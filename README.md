@@ -2,7 +2,7 @@
 
 [![License][img-license]][link-license]
 [![NPM Version][img-npm]][link-npm]
-[![CI Status][img-github-actions]][link-github-actions]
+[![CI Status][img-github]][link-github]
 [![Code Coverage][img-codecov]][link-codecov]
 
 Isomorphic [PostgREST][link-postgrest] API Client for Javascript and Typescript.
@@ -324,14 +324,14 @@ This package and its sources are distributed under [Apache 2.0][link-license].
 
 ---
 
-[img-codecov]: https://badgen.net/codecov/c/github/ivangabriele/postgrester
-[img-github-actions]: https://badgen.net/github/checks/ivangabriele/postgrester/main
+[img-codecov]: https://badgen.net/codecov/c/github/ivangabriele/postgrester/main
+[img-github]: https://badgen.net/github/status/ivangabriele/postgrester/main
 [img-license]: https://badgen.net/github/license/ivangabriele/postgrester
 [img-npm]: https://badgen.net/npm/v/postgrester
 
 [link-contributing]: https://github.com/ivangabriele/postgrester/blob/master/CONTRIBUTING.md
 [link-codecov]: https://codecov.io/gh/ivangabriele/postgrester
-[link-github-actions]: https://github.com/ivangabriele/postgrester/actions?query=branch%3Amain
+[link-github]: https://github.com/ivangabriele/postgrester/actions?query=branch%3Amain
 [link-legacy]: https://github.com/SocialGouv/postgrester
 [link-license]: https://github.com/ivangabriele/postgrester/blob/master/LICENSE
 [link-npm]: https://www.npmjs.com/package/postgrester
