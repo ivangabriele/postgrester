@@ -40,6 +40,7 @@ jobs:
         with:
           cache: yarn
           node-version: 16
+          registry-url: "https://registry.npmjs.org"
       - run: yarn
       - run: yarn build
       - run: npm publish --access=public
