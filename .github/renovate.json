@@ -1,12 +1,4 @@
 {
-  "extends": [
-    "github>SocialGouv/renovate-config",
-    ":automergeAll",
-    "docker:disableMajor",
-    "group:allNonMajor",
-    "schedule:earlyMondays"
-  ],
-  "node": {
-    "supportPolicy": ["lts_latest"]
-  }
+  "enabled": true,
+  "extends": ["github>ivangabriele/renovate-config"]
 }

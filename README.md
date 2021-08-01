@@ -7,6 +7,11 @@
 
 Isomorphic [PostgREST][link-postgrest] API Client for Javascript and Typescript.
 
+> **:memo: Note**<br>
+> This repository was originally [there][link-legacy] which is owned by an
+> organization of which I'm not part anymore. That's why I decided to migrate
+> the entire repository here.
+
 ---
 
 - [Gettting Started](#gettting-started)
@@ -250,7 +255,7 @@ Promise<{
 
 > **:warning: Important**<br>
 > Both `pagesLength` and `totalLength` will equal `-1` if `<withPagesLength>` parameter is `false`
-> or if the length couldn't be resolved.`
+> or if the length couldn't be resolved.
 
 #### post()
 
@@ -319,14 +324,15 @@ This package and its sources are distributed under [Apache 2.0][link-license].
 
 ---
 
-[img-codecov]: https://badgen.net/codecov/c/github/SocialGouv/postgrester
-[img-license]: https://badgen.net/github/license/SocialGouv/postgrester
+[img-codecov]: https://badgen.net/codecov/c/github/ivangabriele/postgrester
+[img-license]: https://badgen.net/github/license/ivangabriele/postgrester
 [img-npm]: https://badgen.net/npm/v/postgrester
-[img-travis]: https://badgen.net/travis/SocialGouv/postgrester
+[img-travis]: https://badgen.net/travis/ivangabriele/postgrester
 
-[link-contributing]: https://github.com/SocialGouv/postgrester/blob/master/CONTRIBUTING.md
-[link-codecov]: https://codecov.io/gh/SocialGouv/postgrester
-[link-license]: https://github.com/SocialGouv/postgrester/blob/master/LICENSE
+[link-contributing]: https://github.com/ivangabriele/postgrester/blob/master/CONTRIBUTING.md
+[link-codecov]: https://codecov.io/gh/ivangabriele/postgrester
+[link-legacy]: https://github.com/SocialGouv/postgrester
+[link-license]: https://github.com/ivangabriele/postgrester/blob/master/LICENSE
 [link-npm]: https://www.npmjs.com/package/postgrester
 [link-postgrest]: http://postgrest.org
-[link-travis]: https://travis-ci.com/SocialGouv/postgrester
+[link-travis]: https://travis-ci.com/ivangabriele/postgrester
