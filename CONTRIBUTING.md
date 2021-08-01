@@ -21,8 +21,14 @@ yarn
 npm version [major|minor|patch]
 ```
 
-This will automatically update the changelog, tag, push, build and publish postgrester to Github
-releases & npm.
+This will automatically:
+
+1. Update the changelog
+2. Create and checkout a new version branch
+3. Bump the version and tag it
+4. Push the branch and tags
+5. Generate a new Github Release
+6. Build and publish it to npm
 
 ## Recommended IDE Settings
 

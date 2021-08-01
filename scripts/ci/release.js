@@ -22,7 +22,7 @@ function run(command) {
       throw new Error(`Missing or malformed "## [UNRELEASED]" in CHANGELOG.md.`);
     }
     console.log(CHANGELOG_REGEX.test(changelogSource));
-    run(`git checkout -B v${VERSION}`);
+    run(`git checkout -B ${VERSION}`);
     const newChangelogSource = changelogSource.replace(CHANGELOG_REGEX, NEW_CHANGELOG_VERSION);
     fs.writeFileSync(CHANGELOG_PATH, newChangelogSource);
     run(`git add .`);
