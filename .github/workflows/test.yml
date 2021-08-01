@@ -16,6 +16,7 @@ jobs:
           node-version: 16
       - run: yarn
       - run: yarn test
+      - run: npx codecov
 
   e2e_test:
     name: E2E Tests
