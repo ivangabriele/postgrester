@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  unit_test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          node-version: 16
+      - run: yarn
+      - run: yarn test
+
+  e2e_test:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          node-version: 16
+      - run: yarn
+      - run: yarn setup
+      - run: yarn test:e2e
