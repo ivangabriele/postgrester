@@ -37,7 +37,7 @@
     "numeral": "2.0.6",
     "pg": "8.7.1",
     "prettier": "2.3.2",
-    "rollup": "2.55.1",
+    "rollup": "2.56.1",
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-json": "4.0.0",
