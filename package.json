@@ -6,7 +6,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "engines": {
-    "node": "16.6.1"
+    "node": ">= 10"
   },
   "scripts": {
     "build": "rollup -c && copyfiles -f ./src/index.d.ts ./dist",
