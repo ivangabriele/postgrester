@@ -25,10 +25,20 @@ function run(command) {
     if (!CHANGELOG_REGEX.test(changelogSource)) {
       throw new Error(`Missing or malformed "## [UNRELEASED]" in CHANGELOG.md.`)
     }
+
     run(`git checkout -B ${VERSION}`)
+
     const newChangelogSource = changelogSource.replace(CHANGELOG_REGEX, NEW_CHANGELOG_VERSION)
     fs.writeFileSync(CHANGELOG_PATH, newChangelogSource)
+
     run(`git add .`)
+    run(`git commit --amend --no-edit`)
+    run(`git tag -f v${VERSION}`)
+    run(`git push origin HEAD --tags`)
+
+    run(`git checkout main`)
+    run(`git fetch`)
+    run(`git reset --hard origin/main`)
   } catch (err) {
     shelljs.echo(`[scripts/ci/release.js] Error: ${err.message}`.red)
 

@@ -1,6 +1,6 @@
 {
   "name": "postgrester",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "license": "Apache-2.0",
   "description": "PostgREST API Client.",
   "main": "./dist/index.js",
@@ -20,8 +20,7 @@
     "test:unit": "jest",
     "test:watch": "yarn test:unit --watch",
     "preversion": "yarn test",
-    "version": "node ./scripts/ci/release.js",
-    "postversion": "git push --tags && git push origin HEAD"
+    "postversion": "node ./scripts/ci/release.js"
   },
   "dependencies": {
     "axios": "0.21.4"
