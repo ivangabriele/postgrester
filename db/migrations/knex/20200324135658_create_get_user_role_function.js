@@ -1,5 +1,5 @@
-exports.up = function (knex) {
-  return knex.raw(`
+exports.up = knex =>
+  knex.raw(`
     CREATE EXTENSION pgcrypto;
 
     -- Get the "role" of a user in "auth.users" table.
@@ -13,13 +13,11 @@ exports.up = function (knex) {
         );
       END
       $$ LANGUAGE plpgsql;
-  `);
-};
+  `)
 
-exports.down = function (knex) {
-  return knex.raw(`
+exports.down = knex =>
+  knex.raw(`
     DROP FUNCTION auth.get_user_role;
 
     DROP EXTENSION pgcrypto;
-  `);
-};
+  `)
