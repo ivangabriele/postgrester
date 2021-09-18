@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [UNRELEASED]
+
+### Changed
+
+- Dependencies update.
+- ESLint instead of TSLint.
+- Full code re-lint with many changed rules.
+- All-in-one root typings declaration.
+- Files structure.
+- `forEach` mapping instead of `for...in` for foreign sorters within `Postgrester.buildUri()`.
+
 ## [1.5.3] - 2021-08-01
 
 ### Changed

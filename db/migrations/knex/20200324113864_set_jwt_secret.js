@@ -1,13 +1,11 @@
-exports.up = function (knex) {
-  return knex.raw(`
+exports.up = knex =>
+  knex.raw(`
     ALTER DATABASE test_db
       SET "app.jwt_secret" TO 'a_test_only_postgrest_jwt_secret';
-  `);
-};
+  `)
 
-exports.down = function (knex) {
-  return knex.raw(`
+exports.down = knex =>
+  knex.raw(`
     ALTER DATABASE test_db
       RESET "app.jwt_secret";
-  `);
-};
+  `)

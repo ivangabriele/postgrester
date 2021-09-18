@@ -1,5 +1,5 @@
-exports.up = function (knex) {
-  return knex.raw(`
+exports.up = knex =>
+  knex.raw(`
     -- JWT extension:
     -- https://github.com/michelp/pgjwt
     CREATE EXTENSION pgjwt;
@@ -44,11 +44,10 @@ exports.up = function (knex) {
       $$ LANGUAGE plpgsql;
 
     GRANT EXECUTE ON FUNCTION api.login TO anonymous;
-  `);
-};
+  `)
 
-exports.down = function (knex) {
-  return knex.raw(`
+exports.down = knex =>
+  knex.raw(`
     REVOKE EXECUTE ON FUNCTION api.login FROM anonymous;
 
     DROP FUNCTION api.login;
@@ -56,5 +55,4 @@ exports.down = function (knex) {
     DROP TYPE auth.jwt_token;
 
     DROP EXTENSION pgjwt;
-  `);
-};
+  `)

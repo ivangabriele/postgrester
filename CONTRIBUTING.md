@@ -32,13 +32,19 @@ This will automatically:
 
 ## Recommended IDE Settings
 
-### VS Code
-
-`settings.json`
+### Visual Studio Code
 
 ```json
 {
-  "editor.formatOnSave": true,
-  "editor.rulers": [100]
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.codeActionsOnSave.mode": "all",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
 ```

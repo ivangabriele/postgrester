@@ -1,5 +1,5 @@
-exports.up = function (knex) {
-  return knex.raw(`
+exports.up = knex =>
+  knex.raw(`
     CREATE TABLE auth.users(
       id serial PRIMARY KEY,
       role name NOT NULL,
@@ -31,11 +31,10 @@ exports.up = function (knex) {
     GRANT SELECT ON auth.users TO anonymous;
     GRANT USAGE, SELECT ON SEQUENCE auth.users_id_seq TO member;
     GRANT SELECT, INSERT, UPDATE, DELETE ON auth.users TO member;
-  `);
-};
+  `)
 
-exports.down = function (knex) {
-  return knex.raw(`
+exports.down = knex =>
+  knex.raw(`
     REVOKE SELECT, INSERT, UPDATE, DELETE ON auth.users FROM member;
     REVOKE USAGE, SELECT ON SEQUENCE auth.users_id_seq FROM member;
     REVOKE SELECT ON auth.users FROM anonymous;
@@ -45,5 +44,4 @@ exports.down = function (knex) {
     DROP FUNCTION auth.encrypt_password;
 
     DROP TABLE auth.users;
-  `);
-};
+  `)

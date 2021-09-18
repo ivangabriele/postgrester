@@ -1,11 +1,9 @@
-exports.up = function (knex) {
-  return knex.raw(`
+exports.up = knex =>
+  knex.raw(`
     CREATE SCHEMA api;
-  `);
-};
+  `)
 
-exports.down = function (knex) {
-  return knex.raw(`
+exports.down = knex =>
+  knex.raw(`
     DROP SCHEMA api;
-  `);
-};
+  `)

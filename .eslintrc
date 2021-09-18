@@ -1,0 +1,30 @@
+{
+  "extends": "@ivangabriele/eslint-config-typescript-base",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "projectFolderIgnoreList": ["**/dist/**"]
+  },
+  "ignorePatterns": ["**/dist/**"],
+  "overrides": [
+    {
+      "files": ["./src/**/*.test.ts", "./tests/**/*.js"],
+      "plugins": ["jest"],
+      "env": {
+        "jest/globals": true
+      }
+    },
+    {
+      "files": ["./e2e/**/*.js"],
+      "plugins": ["jest"],
+      "env": {
+        "mocha": true
+      }
+    },
+    {
+      "files": ["./e2e/**/*.js", "./scripts/**/*.js", "./tests/**/*.js"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
+}

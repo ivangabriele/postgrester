@@ -1,2 +1,2 @@
 // Mock `console`:
-require("./mocks/console");
+require('./mocks/console')
