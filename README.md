@@ -1,11 +1,11 @@
 # postgrester
 
-[![License][img-license]][link-license]
-[![NPM Version][img-npm]][link-npm]
-[![CI Status][img-github]][link-github]
-[![Code Coverage][img-codecov]][link-codecov]
+[![License][img-license]][lnk-license]
+[![NPM Package][img-npm]][lnk-npm]
+[![Build Status][img-github]][lnk-github]
+[![Code Coverage][img-codecov]][lnk-codecov]
 
-Isomorphic [PostgREST][link-postgrest] API Client for Javascript and Typescript.
+Isomorphic [PostgREST][lnk-postgrest] API Client for Javascript and Typescript.
 
 ---
 
@@ -311,22 +311,23 @@ Promise<void>
 
 ## Contribute
 
-Please check our [contributing documentation][link-contributing].
+Please check our [contributing documentation][lnk-contributing].
 
 ## License
 
-This package and its sources are distributed under [Apache 2.0][link-license].
+This package and its sources are distributed under [Apache 2.0][lnk-license].
 
 ---
 
-[img-codecov]: https://badgen.net/codecov/c/github/ivangabriele/postgrester/main
-[img-github]: https://badgen.net/github/status/ivangabriele/postgrester/main
-[img-license]: https://badgen.net/github/license/ivangabriele/postgrester
-[img-npm]: https://badgen.net/npm/v/postgrester
+[img-codecov]: https://img.shields.io/codecov/c/github/ivangabriele/postgrester/main?style=flat-square
+[img-github]:
+  https://img.shields.io/github/workflow/status/ivangabriele/postgrester/Test%20&%20Publish/main?style=flat-square
+[img-license]: https://img.shields.io/github/license/ivangabriele/postgrester?style=flat-square
+[img-npm]: https://img.shields.io/npm/v/postgrester?style=flat-square
 
-[link-contributing]: https://github.com/ivangabriele/postgrester/blob/master/CONTRIBUTING.md
-[link-codecov]: https://codecov.io/gh/ivangabriele/postgrester
-[link-github]: https://github.com/ivangabriele/postgrester/actions?query=branch%3Amain
-[link-license]: https://github.com/ivangabriele/postgrester/blob/master/LICENSE
-[link-npm]: https://www.npmjs.com/package/postgrester
-[link-postgrest]: http://postgrest.org
+[lnk-contributing]: https://github.com/ivangabriele/postgrester/blob/master/CONTRIBUTING.md
+[lnk-codecov]: https://codecov.io/gh/ivangabriele/postgrester/branch/main
+[lnk-github]: https://github.com/ivangabriele/postgrester/actions?query=branch%3Amain++
+[lnk-license]: https://github.com/ivangabriele/postgrester/blob/master/LICENSE
+[lnk-npm]: https://www.npmjs.com/package/postgrester
+[lnk-postgrest]: http://postgrest.org
