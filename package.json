@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@ivangabriele/eslint-config-typescript-base": "2.0.0",
-    "@ivangabriele/prettier-config": "1.1.0",
+    "@ivangabriele/prettier-config": "2.0.1",
     "@tsconfig/recommended": "1.0.1",
     "@types/jest": "27.0.2",
     "archiver": "5.3.0",
