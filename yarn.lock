@@ -372,10 +372,10 @@
     eslint-plugin-typescript-sort-keys "2.0.0"
     prettier "2.4.1"
 
-"@ivangabriele/prettier-config@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@ivangabriele/prettier-config/-/prettier-config-1.1.0.tgz#0b669220b64ebcb7eb0909d967084f864d30cc9b"
-  integrity sha512-cPazyD5+Yw3+n5W8BJK0gIIR+DZkJZvcXwyhCN3zvk61tllj4sqNyQzQptZylJYss6U1PIJPmg+xCZEus77xMQ==
+"@ivangabriele/prettier-config@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ivangabriele/prettier-config/-/prettier-config-2.0.1.tgz#a810b9d5174116c3eca96d96f42c252aac522ddb"
+  integrity sha512-bnEuBx/iYfvePsTt7tIMGekXLNICfgXCBS69Z43Wivi1h+j0I03B9v4WDQq4IeEDYeiZd7GJP1Pwl3jFdosDDA==
 
 "@jest/console@^27.3.1":
   version "27.3.1"
