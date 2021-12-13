@@ -40,7 +40,7 @@ function run(command) {
     run(`git fetch`)
     run(`git reset --hard origin/main`)
   } catch (err) {
-    shelljs.echo(`[scripts/ci/release.js] Error: ${err.message}`.red)
+    ß.error(`[scripts/ci/release.js] Error: ${err.message}`)
 
     shelljs.exit(1)
   }
