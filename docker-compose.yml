@@ -16,7 +16,7 @@ services:
 
   # https://postgrest.org/en/stable/install.html#containerized-postgrest-and-db-with-docker-compose
   postgrest:
-    image: postgrest/postgrest:v6.0.2
+    image: postgrest/postgrest:v9.0.0
     restart: always
     ports:
       - 3000:3000
