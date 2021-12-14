@@ -6,7 +6,7 @@ const postgrestClient = create({
   axiosConfig: { baseURL: 'http://localhost:3000' },
 })
 
-describe('E2E: ILIKE', () => {
+describe('E2E: #ilike()', () => {
   it(`should find all the books which title contains "an" or "An"`, async () => {
     const { data: result } = await postgrestClient
       .select('title')
