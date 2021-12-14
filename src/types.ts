@@ -26,7 +26,6 @@ export interface PostgresterConstructor {
 
 export interface PostgresterInstance {
   and: PostgresterInstance
-  delete(path: string): Promise<void>
   eq(column: string, value: boolean | number | string | null, withQuotes?: boolean): PostgresterInstance
   get<T = Data>(
     path: string,
@@ -76,6 +75,12 @@ export interface PostgresterInstance {
   post<T extends Data = any>(
     path: string,
     data: Partial<T>[],
+  ): Promise<{
+    data: undefined
+  }>
+  post<T extends Data = any>(
+    path: string,
+    data: Partial<T>[],
     options: {
       return: 'representation'
     } & PostgesterPostUpsertOptions,
@@ -86,6 +91,24 @@ export interface PostgresterInstance {
     path: string,
     data: Partial<T>[],
     options?: PostgesterCommonOptions & PostgesterPostUpsertOptions,
+  ): Promise<{
+    data: undefined
+  }>
+
+  delete(path: string): Promise<void>
+  delete<T extends Data = any>(
+    path: string,
+    options: {
+      return: 'representation'
+    },
+  ): Promise<{
+    data: T[]
+  }>
+  delete(
+    path: string,
+    options: {
+      return: 'headers-only'
+    },
   ): Promise<{
     data: undefined
   }>

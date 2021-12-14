@@ -235,11 +235,18 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     await this.axios.put(uri, data)
   }
 
-  public async delete(path: string) {
+  public async delete(path: string, options: any = {}): Promise<any> {
     const uri = this.buildUri(path)
     this.reset()
 
-    await this.axios.delete(uri)
+    const headers = this.buildHeaders({ preferOptions: options })
+    const response = await this.axios.delete(uri, {
+      headers,
+    })
+
+    return {
+      data: response?.data.length ? response.data[0] : undefined,
+    }
   }
 
   public select(selector: string) {

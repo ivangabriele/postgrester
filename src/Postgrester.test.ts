@@ -371,7 +371,9 @@ describe('Postgrester', () => {
     test('should call axios.delete() with the expected params', async () => {
       await postgresterClient.delete('/path')
 
-      expect(mockedAxios.delete).toHaveBeenCalledWith('/path')
+      expect(mockedAxios.delete).toHaveBeenCalledWith('/path', {
+        headers: undefined,
+      })
     })
   })
 })

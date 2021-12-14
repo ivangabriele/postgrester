@@ -17,7 +17,7 @@
     "test:e2e:v8": "cross-env POSTGREST_VERSION=v8.0.0.20211102 yarn setup && yarn test:e2e",
     "test:e2e:v9": "yarn setup && yarn test:e2e",
     "test:lint": "eslint .",
-    "test:unit": "jest ./src/**/*.test.ts",
+    "test:unit": "jest",
     "test:watch": "yarn test:unit --watch"
   },
   "dependencies": {

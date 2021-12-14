@@ -334,14 +334,23 @@ Promise<void>
 
 #### delete()
 
-| Name | Type     | Default      | Examples   |
-| ---- | -------- | ------------ | ---------- |
-| path | `string` | **required** | `"/books"` |
+| Name      | Type                                              | Default      | Examples   |
+| --------- | ------------------------------------------------- | ------------ | ---------- |
+| path      | `string`                                          | **required** | `"/books"` |
+| `options` | `{ return?: 'headers-only' \| 'representation' }` |              |            |
 
 Return value:
 
 ```ts
 Promise<void>
+```
+
+or (with `{ return: "representation" }`):
+
+```ts
+Promise<{
+  data: T[]
+}>
 ```
 
 ## Contribute

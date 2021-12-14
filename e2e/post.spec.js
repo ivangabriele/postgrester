@@ -7,7 +7,7 @@ const postgrestClient = create({
   axiosConfig: { baseURL: 'http://localhost:3000' },
 })
 
-describe('E2E: POST', () => {
+describe('E2E: #post()', () => {
   beforeEach(async () => {
     await postgrestClient.gt('id', 1).delete('/customers')
   })
