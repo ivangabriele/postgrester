@@ -1,8 +1,8 @@
 const assert = require('assert')
 
-const postgrester = require('..')
+const { create } = require('..')
 
-const postgrestClient = postgrester.create({
+const postgrestClient = create({
   axiosConfig: { baseURL: 'http://localhost:3000' },
 })
 

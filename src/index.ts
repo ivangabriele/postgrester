@@ -1,26 +1,13 @@
-// tslint:disable-next-line: import-name
-import PostgresterClass from './Postgrester'
-import { PostgresterConfig, PostgresterInstance, PostgresterOptions, PostgresterStatic } from './types'
+/* eslint-disable import/prefer-default-export */
+
+import { Postgrester } from './Postgrester'
+import { PostgresterConfig, PostgresterInstance } from './types'
 
 /**
  * Create an instance of Postgrester.
  */
-function createInstance(config: PostgresterConfig): PostgresterInstance {
-  return new PostgresterClass(config)
+function create(config: PostgresterConfig): PostgresterInstance {
+  return new Postgrester(config)
 }
 
-// Create the default instance to be exported:
-const postgrester: PostgresterStatic = createInstance({}) as any
-
-// Expose Postgrester class to allow class inheritance:
-;(postgrester as any).Postgrester = PostgresterClass
-
-// Factory for creating new instances:
-postgrester.create = function create(options: PostgresterOptions) {
-  return createInstance(options)
-}
-
-export default postgrester
-
-// Allow use of default import syntax in TypeScript:
-module.exports.default = postgrester
+export { create }

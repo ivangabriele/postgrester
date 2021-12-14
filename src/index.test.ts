@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import postgrester from '.'
+import { create } from '.'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -12,9 +12,9 @@ describe('postgrester', () => {
         baseUri: 'https://contributions-api.codedutravail.num.social.gouv.fr',
       }
 
-      const postgrestClient = postgrester.create(options)
+      const postgrestClient = create(options)
 
-      expect(mockedAxios.create).toHaveBeenCalledTimes(2)
+      expect(mockedAxios.create).toHaveBeenCalledTimes(1)
       // TODO Solve this test expectation.
       /* expect(mockedAxios.create).toHaveBeenCalledWith(
         // Default config first:

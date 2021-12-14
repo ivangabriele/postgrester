@@ -4,7 +4,10 @@
     "project": "./tsconfig.json",
     "projectFolderIgnoreList": ["**/dist/**"]
   },
-  "ignorePatterns": ["**/dist/**"],
+  "ignorePatterns": ["/dist/"],
+  "rules": {
+    "import/no-import-module-exports": "off"
+  },
   "overrides": [
     {
       "files": ["./src/**/*.test.ts", "./tests/**/*.js"],
@@ -15,9 +18,11 @@
     },
     {
       "files": ["./e2e/**/*.js"],
-      "plugins": ["jest"],
       "env": {
         "mocha": true
+      },
+      "rules": {
+        "import/no-unresolved": "off"
       }
     },
     {

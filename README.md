@@ -11,8 +11,6 @@ Supported PostgREST versions:
 
 - `v9.0.0`
 - `v8.0.0`
-- `v7.0.1`
-- `v6.0.2`
 
 ---
 
@@ -42,7 +40,8 @@ Supported PostgREST versions:
     - [page()](#page)
   - [Request Methods](#request-methods)
     - [get()](#get)
-    - [post()](#post)
+    - [post() / Insert](#post--insert)
+    - [post() / Upsert](#post--upsert)
     - [patch()](#patch)
     - [put()](#put)
     - [delete()](#delete)
@@ -58,9 +57,9 @@ npm i postgrester
 ## Example
 
 ```js
-import postgrester from "postgrester";
+import { create } from "postgrester";
 
-const postgrestClient = postgrester.create({
+const postgrestClient = create({
   axiosConfig: { baseURL: "https://api.example.com" }
 });
 
@@ -85,7 +84,7 @@ const postgrestClient = postgrester.create({
 
 ### Options
 
-When creating the instance via `postgrester.create([options])`:
+When creating the instance via `create([options])`:
 
 | Property        | Type                 | Default | Description                                |
 | --------------- | -------------------- | ------- | ------------------------------------------ |
@@ -245,7 +244,7 @@ All request methods are asynchronous promises.
 | `path`            | `string`  | **required** | `"/books"` |
 | `withPagesLength` | `boolean` | `false`      |            |
 
-**Return value**
+Return value:
 
 ```ts
 Promise<{
@@ -259,24 +258,53 @@ Promise<{
 > Both `pagesLength` and `totalLength` will equal `-1` if `<withPagesLength>` parameter is `false`
 > or if the length couldn't be resolved.
 
-#### post()
+#### post() / Insert
 
-| Name            | Type                                                                              | Default                              | Examples   |
-| --------------- | --------------------------------------------------------------------------------- | ------------------------------------ | ---------- |
-| `path`          | `string`                                                                          | **required**                         | `"/books"` |
-| `data`          | `object \| object[]`                                                              | **required**                         |            |
-| `upsertOptions` | `{ onConflict?: string, resolution?: "ignore-duplicates" \| "merge-duplicates" }` | `{ resolution: "merge-duplicates" }` |            |
+| Name      | Type                                              | Default      | Examples   |
+| --------- | ------------------------------------------------- | ------------ | ---------- |
+| `path`    | `string`                                          | **required** | `"/books"` |
+| `data`    | `object`                                          | **required** |            |
+| `options` | `{ return?: 'headers-only' \| 'representation' }` |              |            |
 
-**Return value**
+Return value:
 
 ```ts
 Promise<void>
 ```
 
-> **:warning: Important**<br>
-> If `data` is an array, it will be considered as an
-> [upsert](http://postgrest.org/en/v7.0.0/api.html#upsert). In this case, if you don't specify
-> otherwise in `upsertOptions`, the `merge-duplicates` method will be used by default.
+or (with `{ return: "representation" }`):
+
+```ts
+Promise<{
+  data: T
+}>
+```
+
+#### post() / Upsert
+
+> **:warning: Important**  
+> If `data` is an array, it will be considered as an [upsert](https://postgrest.org/en/v9.0/api.html#upsert).  
+> In this case, if you don't specify otherwise in `options`, `merge-duplicates` resolution will be used by default.
+
+| Name      | Type                                                                                                                           | Default                              | Examples   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ | ---------- |
+| `path`    | `string`                                                                                                                       | **required**                         | `"/books"` |
+| `data`    | `object[]`                                                                                                                     | **required**                         |            |
+| `options` | `{ onConflict?: string, resolution?: "ignore-duplicates" \| "merge-duplicates", return?: 'headers-only' \| 'representation' }` | `{ resolution: "merge-duplicates" }` |            |
+
+Return value:
+
+```ts
+Promise<void>
+```
+
+or (with `{ return: "representation" }`):
+
+```ts
+Promise<{
+  data: T[]
+}>
+```
 
 #### patch()
 
@@ -285,7 +313,7 @@ Promise<void>
 | `path` | `string` | **required** | `"/books"` |
 | `data` | `object` | **required** |            |
 
-**Return value**
+Return value:
 
 ```ts
 Promise<void>
@@ -298,7 +326,7 @@ Promise<void>
 | `path` | `string` | **required** | `"/books"` |
 | `data` | `object` | **required** |            |
 
-**Return value**
+Return value:
 
 ```ts
 Promise<void>
@@ -310,7 +338,7 @@ Promise<void>
 | ---- | -------- | ------------ | ---------- |
 | path | `string` | **required** | `"/books"` |
 
-**Return value**
+Return value:
 
 ```ts
 Promise<void>
