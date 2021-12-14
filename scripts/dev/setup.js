@@ -2,6 +2,8 @@ const ß = require('bhala')
 const knex = require('knex')
 const shelljs = require('shelljs')
 
+const { POSTGREST_VERSION } = process.env
+
 if (!shelljs.which('docker')) {
   ß.error('[script/dev/setup] Error: Sorry, this script requires docker.')
 
@@ -40,12 +42,18 @@ async function waitForDb() {
 ;(async () => {
   try {
     run(`docker-compose down --remove-orphans -v`)
+
     run(`docker-compose up -d db`)
     ß.info(`Waiting for db to be up and ready…`)
     await waitForDb()
     run(`yarn knex migrate:latest`)
     run(`yarn knex seed:run`)
-    run(`docker-compose up -d postgrest`)
+
+    if (POSTGREST_VERSION === undefined) {
+      run(`cross-env POSTGREST_VERSION=v9.0.0 docker-compose up -d postgrest`)
+    } else {
+      run(`docker-compose up -d postgrest`)
+    }
 
     shelljs.exit()
   } catch (err) {
