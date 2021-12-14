@@ -134,8 +134,3 @@ dist
 # Custom
 
 /dist
-
-/.vscode/settings.json
-/RELEASE_NOTES.md
-
-*.zip
