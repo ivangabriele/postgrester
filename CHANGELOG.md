@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/ivangabriele/postgrester/compare/v2.0.0...v2.1.0) (2021-12-14)
+
+
+### Features
+
+* add representation return option to delete() ([#207](https://github.com/ivangabriele/postgrester/issues/207)) ([d620b0a](https://github.com/ivangabriele/postgrester/commit/d620b0a19e30fe496c918640b714f0eeef6cbced))
+
 # [2.0.0](https://github.com/ivangabriele/postgrester/compare/v1.0.5...v2.0.0) (2021-12-14)
 
 
