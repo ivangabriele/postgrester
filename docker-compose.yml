@@ -2,12 +2,11 @@ version: "3"
 
 services:
   db:
-    image: igabriele/postgresql-jwt:12-alpine
+    image: postgres:14
     restart: always
     ports:
       - 5432:5432
     environment:
-      PGRST_JWT_SECRET: a_test_only_postgrest_jwt_secret
       POSTGRES_DB: test_db
       POSTGRES_PASSWORD: test_db_password
       POSTGRES_USER: test_db_user
@@ -24,9 +23,6 @@ services:
       PGRST_DB_ANON_ROLE: anonymous
       PGRST_DB_SCHEMA: api
       PGRST_DB_URI: postgresql://test_db_user:test_db_password@db:5432/test_db
-      # It must be at least 32 characters long:
-      # https://github.com/PostgREST/postgrest/issues/977#issuecomment-329917367
-      PGRST_JWT_SECRET: a_test_only_postgrest_jwt_secret
     depends_on:
       - db
 

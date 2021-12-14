@@ -1,8 +1,16 @@
-import axios, { AxiosInstance } from 'axios'
+/* eslint-disable import/prefer-default-export */
 
-// tslint:disable-next-line:import-name
-import T from './texts'
-import { PostgresterConfig, PostgresterConstructor, PostgresterInstance, PostgesterPostUpsertOptions } from './types'
+import axios, { AxiosInstance, AxiosRequestHeaders } from 'axios'
+
+import {
+  PostgresterConfig,
+  PostgresterConstructor,
+  PostgresterInstance,
+  PostgesterPostUpsertOptions,
+  Data,
+  PostgesterCommonOptions,
+  StringPojo,
+} from './types'
 
 const Postgrester: PostgresterConstructor = class Postgrester implements PostgresterInstance {
   private ands: string[] = []
@@ -47,20 +55,11 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     return this
   }
 
-  constructor({ axiosConfig, axiosInstance, baseUri }: PostgresterConfig) {
-    if (baseUri !== undefined) {
-      // eslint-disable-next-line no-console
-      console.warn(T.POSTGRESTER_DEPRECATION_BASE_URI)
-    }
-
+  constructor({ axiosConfig, axiosInstance }: PostgresterConfig) {
     if (axiosInstance !== undefined) {
       this.axios = axiosInstance
     } else {
       const newAxiosConfig = axiosConfig !== undefined ? axiosConfig : {}
-
-      if (baseUri !== undefined) {
-        newAxiosConfig.baseURL = baseUri
-      }
 
       this.axios = axios.create(newAxiosConfig)
     }
@@ -81,7 +80,7 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
   }
 
   private buildUri(path: string, isGet = false) {
-    const params = []
+    const params: string[] = []
 
     // Selectors
     if (isGet) {
@@ -133,7 +132,31 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     return `${path}?${params.join('&')}`
   }
 
-  public async get<T = any>(path: string, withPagesLength = false) {
+  // eslint-disable-next-line class-methods-use-this
+  private buildHeaders({ preferOptions }: { preferOptions: StringPojo }): AxiosRequestHeaders | undefined {
+    const preferOptionsKeys = Object.keys(preferOptions).sort()
+    if (preferOptionsKeys.length === 0) {
+      return undefined
+    }
+
+    const preferHeader = preferOptionsKeys
+      .map(key => `${key}=${preferOptions[key]}`)
+      // https://github.com/PostgREST/postgrest/pull/698
+      .join(',')
+
+    return {
+      Prefer: preferHeader,
+    }
+  }
+
+  public async get<T = Data>(
+    path: string,
+    withPagesLength = false,
+  ): Promise<{
+    data: T[]
+    pagesLength: number
+    totalLength: number
+  }> {
     const uri = this.buildUri(path, true)
     const { limit } = this
     this.reset()
@@ -146,7 +169,7 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
         }
       : {}
 
-    const { data, headers } = await this.axios.get<T>(uri, config)
+    const { data, headers } = await this.axios.get<T[]>(uri, config)
 
     let totalLength = -1
     let pagesLength = -1
@@ -158,40 +181,54 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
     return { data, pagesLength, totalLength }
   }
 
-  public async post(path: string, data: object | object[], upsertOptions: PostgesterPostUpsertOptions = {}) {
+  public async post(
+    path: string,
+    data: any,
+    options: any = {},
+  ): Promise<{
+    data: any
+  }> {
     this.reset()
 
     // Upsert
-    // http://postgrest.org/en/v7.0.0/api.html#upsert
+    // http://postgrest.org/en/v9.0.0/api.html#upsert
     if (Array.isArray(data)) {
-      if (upsertOptions.resolution === undefined) {
-        // eslint-disable-next-line no-param-reassign
-        upsertOptions.resolution = 'merge-duplicates'
+      const upsertOptions: PostgesterCommonOptions & PostgesterPostUpsertOptions = {
+        ...options,
+        resolution: options.resolution || 'merge-duplicates',
       }
 
-      const { onConflict, resolution } = upsertOptions
+      const { onConflict, ...preferOptions } = upsertOptions
       const fullPath = onConflict !== undefined ? `${path}?on_conflict=${onConflict}` : path
-
-      await this.axios.post(fullPath, data, {
-        headers: {
-          Prefer: `resolution=${resolution}`,
-        },
+      const headers = this.buildHeaders({ preferOptions: preferOptions as StringPojo })
+      const response = await this.axios.post(fullPath, data, {
+        headers,
       })
 
-      return
+      return {
+        data: response?.data.length ? response.data : undefined,
+      }
     }
 
-    await this.axios.post(path, data)
+    const insertOptions: PostgesterCommonOptions = options
+    const headers = this.buildHeaders({ preferOptions: insertOptions })
+    const response = await this.axios.post(path, data, {
+      headers,
+    })
+
+    return {
+      data: response?.data.length ? response.data[0] : undefined,
+    }
   }
 
-  public async patch(path: string, data: object) {
+  public async patch(path: string, data: Data) {
     const uri = this.buildUri(path)
     this.reset()
 
     await this.axios.patch(uri, data)
   }
 
-  public async put(path: string, data: object) {
+  public async put(path: string, data: Data) {
     const uri = this.buildUri(path)
     this.reset()
 
@@ -379,7 +416,4 @@ const Postgrester: PostgresterConstructor = class Postgrester implements Postgre
   }
 }
 
-export default Postgrester
-
-// Allow use of default import syntax in TypeScript:
-module.exports.default = Postgrester
+export { Postgrester }

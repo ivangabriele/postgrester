@@ -1,8 +1,24 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
-    "module": "es2015",
+    "allowJs": true,
+    "declaration": true,
+    "declarationDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": false,
+    "module": "esnext",
     "moduleResolution": "node",
+    "noEmit": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "strict": false,
+    "strictNullChecks": true,
+    "target": "ES6"
   },
-  "include": ["**/*.js", "**/*.ts"]
+  "files": ["./src/index.ts"],
+  "include": ["**/*.js", "**/*.ts"],
+  "exclude": ["dist/*", "node_modules/*"]
 }

@@ -7,16 +7,14 @@ exports.up = knex =>
       author_id serial REFERENCES api.authors(id)
     );
 
-    GRANT SELECT ON api.books TO anonymous;
-    GRANT USAGE, SELECT ON SEQUENCE api.books_id_seq TO member;
-    GRANT SELECT, INSERT, UPDATE, DELETE ON api.books TO member;
+    GRANT USAGE, SELECT ON SEQUENCE api.books_id_seq TO anonymous;
+    GRANT SELECT, INSERT, UPDATE, DELETE ON api.books TO anonymous;
   `)
 
 exports.down = knex =>
   knex.raw(`
-    REVOKE SELECT, INSERT, UPDATE, DELETE ON api.books FROM member;
-    REVOKE USAGE, SELECT ON SEQUENCE api.books_id_seq FROM member;
-    REVOKE SELECT ON api.books FROM anonymous;
+    REVOKE SELECT, INSERT, UPDATE, DELETE ON api.books FROM anonymous;
+    REVOKE USAGE, SELECT ON SEQUENCE api.books_id_seq FROM anonymous;
 
     DROP TABLE api.books;
   `)

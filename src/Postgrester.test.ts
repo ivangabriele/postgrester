@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-import Postgrester from './Postgrester'
-import T from './texts'
+import { Postgrester } from './Postgrester'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -17,18 +16,6 @@ describe('Postgrester', () => {
   beforeEach(() => {
     mockedAxios.post.mockClear()
     ;(postgresterClient as any).reset()
-  })
-
-  test('should return the expected warning when using `baseUri` option', () => {
-    // eslint-disable-next-line no-new
-    new Postgrester({
-      baseUri: 'https://api.example.com',
-    })
-
-    // eslint-disable-next-line no-console
-    expect(console.warn).toHaveBeenCalledTimes(1)
-    // eslint-disable-next-line no-console
-    expect(console.warn).toHaveBeenCalledWith(T.POSTGRESTER_DEPRECATION_BASE_URI)
   })
 
   test('should return the expected path', () => {
@@ -320,7 +307,13 @@ describe('Postgrester', () => {
     test('should call axios.post() with the expected params', async () => {
       await postgresterClient.post('/path', {})
 
-      expect(mockedAxios.post).toHaveBeenCalledWith('/path', {})
+      expect(mockedAxios.post).toHaveBeenCalledWith(
+        '/path',
+        {},
+        {
+          headers: undefined,
+        },
+      )
     })
 
     test('should call axios.post() with the expected params (upsert)', async () => {
