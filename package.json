@@ -10,8 +10,6 @@
   },
   "scripts": {
     "build": "rm -Rf ./dist && rollup -c",
-    "build:release": "yarn build && node ./scripts/ci/build_release.js",
-    "ci:generate:release_notes": "node ./scripts/ci/generate_release_notes.js",
     "prepare": "husky install",
     "setup": "node ./scripts/dev/setup.js",
     "test": "yarn test:lint && yarn test:unit",
@@ -20,9 +18,7 @@
     "test:e2e:v9": "yarn setup && yarn test:e2e",
     "test:lint": "eslint .",
     "test:unit": "jest ./src/**/*.test.ts",
-    "test:watch": "yarn test:unit --watch",
-    "preversion": "yarn test",
-    "postversion": "node ./scripts/ci/release.js"
+    "test:watch": "yarn test:unit --watch"
   },
   "dependencies": {
     "axios": "0.24.0"
