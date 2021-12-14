@@ -7,6 +7,13 @@
 
 Isomorphic [PostgREST][lnk-postgrest] API Client for Javascript and Typescript.
 
+Supported PostgREST versions:
+
+- `v9.0.0`
+- `v8.0.0`
+- `v7.0.1`
+- `v6.0.2`
+
 ---
 
 - [Gettting Started](#gettting-started)
@@ -199,14 +206,14 @@ For example, `postgrestClient.not.is("category_id", null).ilike("author", "dosto
 
 This getter condition **ALL** the following filtering methods to be conjuncted as "ands".
 
-For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will 
+For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will
 **intersect** both `is()` and `ilike()` filters.
 
 #### or
 
 This getter condition **ALL** the following filtering methods to be conjuncted as "ors".
 
-For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will 
+For example, `postgrestClient.and.is("category_id", null).ilike("author", "dostoevsky")` will
 **unite** both `is()` and `ilike()` filters.
 
 ### Ordering Methods
