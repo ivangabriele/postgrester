@@ -1,7 +1,6 @@
 /.github
 /.husky
 /.vscode
-/.yarn
 /coverage
 /e2e
 /db
