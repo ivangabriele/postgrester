@@ -37,10 +37,10 @@
     "eslint-plugin-jest": "25.3.0",
     "husky": "7.0.4",
     "jest": "27.4.5",
-    "knex": "0.95.14",
+    "knex": "0.95.15",
     "mocha": "9.1.3",
     "pg": "8.7.1",
-    "rollup": "2.61.1",
+    "rollup": "2.62.0",
     "shelljs": "0.8.4",
     "ts-jest": "27.1.2",
     "typescript": "4.5.4"
