@@ -1838,10 +1838,10 @@ before-after-hook@^2.2.0:
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.2.2.tgz#a6e8ca41028d90ee2c24222f201c90956091613e"
   integrity sha512-3pZEU3NT5BFUo/AD5ERPWOgQOCZITni6iavr5AUw5AUwQjMlI0kzu5btnyD39AF0gUEsDPwJT+oY1ORBJijPjQ==
 
-bhala@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/bhala/-/bhala-1.0.2.tgz#b389da6857aeb78fb9ec389c1d06a149d83e744b"
-  integrity sha512-qiClowBg5/e5g/bLOoT73Nx1fnHeR4sKl/nU7DrMQX/RkQ9bGOIDCtxo9Xcy6AYdNfwxbE5AlSmTEBKQDKHvdA==
+bhala@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bhala/-/bhala-2.1.0.tgz#75af5e5b2102d24bc8608fc4f3440980637ec3bb"
+  integrity sha512-I4Qpf4iqXetJlc13nBlVTIernQsSIzDExwM1iV5ejpTwKKzwO95cJ2eQScLBtggvHCvPA+vrsd/hUaodJS0u5A==
   dependencies:
     chalk "^4.1.2"
     node-emoji "^1.11.0"
