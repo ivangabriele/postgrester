@@ -10,25 +10,16 @@
   },
   "overrides": [
     {
-      "files": ["./src/**/*.test.ts", "./tests/**/*.js"],
+      "files": ["./scripts/**/*.js", "./tests/**/*.js"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    },
+    {
+      "files": ["./e2e/**/*.js", "./src/**/*.test.ts", "./tests/**/*.js"],
       "plugins": ["jest"],
       "env": {
         "jest/globals": true
-      }
-    },
-    {
-      "files": ["./e2e/**/*.js"],
-      "env": {
-        "mocha": true
-      },
-      "rules": {
-        "import/no-unresolved": "off"
-      }
-    },
-    {
-      "files": ["./e2e/**/*.js", "./scripts/**/*.js", "./tests/**/*.js"],
-      "rules": {
-        "import/no-extraneous-dependencies": "off"
       }
     }
   ]
