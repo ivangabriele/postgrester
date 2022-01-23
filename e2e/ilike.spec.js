@@ -1,5 +1,3 @@
-const assert = require('assert')
-
 const { create } = require('..')
 
 const postgrestClient = create({
@@ -7,7 +5,7 @@ const postgrestClient = create({
 })
 
 describe('E2E: #ilike()', () => {
-  it(`should find all the books which title contains "an" or "An"`, async () => {
+  test(`should find all the books which title contains "an" or "An"`, async () => {
     const { data: result } = await postgrestClient
       .select('title')
       .select('authors(name)')
@@ -15,12 +13,12 @@ describe('E2E: #ilike()', () => {
       .orderBy('title')
       .get('/books')
 
-    assert.equal(result.length, 3)
-    assert.equal(result[0].title, "An Analysis of Betty Friedan's The Feminine Mystique")
-    assert.equal(result[0].authors.name, 'Elizabeth Whitaker')
-    assert.equal(result[1].title, 'Anna Karenina')
-    assert.equal(result[1].authors.name, 'Leo Tolstoy')
-    assert.equal(result[2].title, 'War and Peace')
-    assert.equal(result[2].authors.name, 'Leo Tolstoy')
+    expect(result.length).toEqual(3)
+    expect(result[0].title).toEqual("An Analysis of Betty Friedan's The Feminine Mystique")
+    expect(result[0].authors.name).toEqual('Elizabeth Whitaker')
+    expect(result[1].title).toEqual('Anna Karenina')
+    expect(result[1].authors.name).toEqual('Leo Tolstoy')
+    expect(result[2].title).toEqual('War and Peace')
+    expect(result[2].authors.name).toEqual('Leo Tolstoy')
   })
 })
