@@ -1,3 +1,11 @@
+## [2.1.1](https://github.com/ivangabriele/postgrester/compare/v2.1.0...v2.1.1) (2022-01-23)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#215](https://github.com/ivangabriele/postgrester/issues/215)) ([ea97ff4](https://github.com/ivangabriele/postgrester/commit/ea97ff4c2e690cb6194e45a64687077ee45e63c7))
+* **dev-deps:** resolve nanoid@>=3.1.31 to fix CVE-2021-23566 ([ca34a6e](https://github.com/ivangabriele/postgrester/commit/ca34a6e43e51b1da15238f623308bf92e49092dc))
+
 # [2.1.0](https://github.com/ivangabriele/postgrester/compare/v2.0.0...v2.1.0) (2021-12-14)
 
 
