@@ -26,7 +26,7 @@
   "devDependencies": {
     "@ivangabriele/eslint-config-typescript-base": "2.1.4",
     "@ivangabriele/prettier-config": "3.0.2",
-    "@ivangabriele/semantic-release-config-base": "1.3.0",
+    "@ivangabriele/semantic-release-config-base": "1.5.0",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-node-resolve": "13.1.3",
     "@rollup/plugin-typescript": "8.3.0",
@@ -34,12 +34,12 @@
     "bhala": "2.1.0",
     "codecov": "3.8.3",
     "cross-env": "7.0.3",
-    "eslint-plugin-jest": "26.1.0",
+    "eslint-plugin-jest": "26.1.1",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "knex": "1.0.3",
     "pg": "8.7.3",
-    "rollup": "2.67.2",
+    "rollup": "2.67.3",
     "shelljs": "0.8.5",
     "ts-jest": "27.1.3",
     "typescript": "4.5.5"
