@@ -27,7 +27,7 @@
     "@ivangabriele/eslint-config-typescript-base": "2.1.4",
     "@ivangabriele/prettier-config": "3.0.2",
     "@ivangabriele/semantic-release-config-base": "2.0.2",
-    "@rollup/plugin-commonjs": "21.1.0",
+    "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-node-resolve": "13.2.1",
     "@rollup/plugin-typescript": "8.3.2",
     "@types/jest": "27.4.1",
