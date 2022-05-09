@@ -35,7 +35,7 @@
     "codecov": "3.8.3",
     "cross-env": "7.0.3",
     "eslint-plugin-jest": "26.1.5",
-    "husky": "7.0.4",
+    "husky": "8.0.0",
     "jest": "27.5.1",
     "knex": "1.0.7",
     "pg": "8.7.3",
