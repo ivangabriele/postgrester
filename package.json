@@ -31,7 +31,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-typescript": "8.3.2",
     "@types/jest": "27.5.1",
-    "bhala": "2.1.0",
+    "bhala": "3.0.4",
     "codecov": "3.8.3",
     "cross-env": "7.0.3",
     "eslint-plugin-jest": "26.2.2",
