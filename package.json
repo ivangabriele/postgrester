@@ -24,7 +24,7 @@
     "axios": "0.27.2"
   },
   "devDependencies": {
-    "@ivangabriele/eslint-config-typescript-base": "2.1.4",
+    "@ivangabriele/eslint-config-typescript-base": "4.3.0",
     "@ivangabriele/prettier-config": "3.0.2",
     "@ivangabriele/semantic-release-config-base": "2.0.2",
     "@rollup/plugin-commonjs": "22.0.0",
