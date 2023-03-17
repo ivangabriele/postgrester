@@ -1,5 +1,10 @@
 # postgrester
 
+**⚠️ THIS PACKAGE IS DEPRECATED AND NO LONGER MAINTAINED,
+YOU CAN USE [@supabase/postgrest-js](https://github.com/supabase/postgrest-js) AS A REPLACEMENT.**
+
+---
+
 [![License][img-license]][lnk-license]
 [![NPM Package][img-npm]][lnk-npm]
 [![Build Status][img-github]][lnk-github]
